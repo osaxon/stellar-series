@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+type Project = CollectionEntry<"projects">;
+const projects: Project[] = await getCollection("projects");
+---
+
+<Layout title="Projects">
+    <main class="@container space-y-12">
+        <h1 class="text-3xl font-bold">Projects</h1>
+        <div class="grid gap-4 grid-cols-1 @xl:grid-cols-2">
+            {
+                projects.map(({ data: { title }, slug }) => (
+                    <a
+                        href={`/projects/${slug}`}
+                        class="list-none relative group flex gap-4 justify-between"
+                    >
+                        <div>
+                            <p class="text-xl font-bold">{title}</p>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </main>
+</Layout>

@@ -1,6 +1,6 @@
 // 1. Import utilities from `astro:content`
-import { z, defineCollection } from "astro:content";
-// 2. Define your collection(s)
+import { z, defineCollection, reference } from "astro:content";
+
 const project = defineCollection({
     type: "content",
     schema: z.object({

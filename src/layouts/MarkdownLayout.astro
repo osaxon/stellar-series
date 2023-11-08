@@ -1,0 +1,35 @@
+---
+interface Props {
+    title: string;
+    path: "blog" | "projects";
+}
+import { ViewTransitions } from "astro:transitions";
+
+const { title, path } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <ViewTransitions />
+
+        <title>{title}</title>
+    </head>
+    <body transition:animate="slide" class="mx-auto max-w-3xl">
+        <main>
+            <nav class="py-4">
+                <a class="underline font-mono" href={`/${path}`}>Back</a>
+            </nav>
+            <article
+                class="prose lg:prose-xl py-8 text-primary-content prose-headings:text-primary-content prose-li:list-none prose-li:font-bold"
+            >
+                <slot />
+            </article>
+        </main>
+    </body>
+</html>

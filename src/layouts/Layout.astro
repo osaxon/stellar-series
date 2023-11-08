@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+import "../styles/main.css";
 interface Props {
     title: string;
 }
@@ -7,16 +9,27 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html class="light" lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+        <ViewTransitions />
         <title>{title}</title>
     </head>
-    <body>
+    <body
+        transition:animate="slide"
+        class="mx-auto max-w-3xl px-2 bg-background-50 text-text-950"
+    >
+        <nav transition:animate="none" class="flex justify-between py-4">
+            <a href="/">Oli</a>
+            <ul class="flex gap-2 items-center">
+                <a href="/blog">Blog</a>
+                <a href="/projects">Projects</a>
+            </ul>
+        </nav>
         <slot />
     </body>
 </html>
