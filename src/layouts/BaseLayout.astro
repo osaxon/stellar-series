@@ -11,7 +11,7 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html class="dark scroll-smooth" lang="en">
+<html class="light scroll-smooth" lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta
@@ -21,12 +21,14 @@ const { title, description } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+        <script type="module" src="../../utils/themeToggle.js"></script>
+
         <ViewTransitions />
         <title>{title}</title>
     </head>
     <body
         transition:animate="slide"
-        class="bg-background-50 text-text-950 flex flex-col gap-12"
+        class="bg-background text-text-950 flex flex-col gap-12"
     >
         <slot />
     </body>

@@ -7,23 +7,37 @@ type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
 ---
 
-<PageLayout title="Welcome to Astro." description="">
+<PageLayout
+    title="Welcome to Astro."
+    description={`Oli Saxon | Explorer in the world of software development, dipping my toes in
+        web-design & UX.`}
+>
     <h1 class="text-title font-heading font-bold">Oli Saxon</h1>
-    <p class="font-heading text-sub-title mb-10">
+    <p class="font-heading text-sub-title mb-[var(--space-lg)]">
         Explorer in the world of software development, dipping my toes in
         web-design & UX.
     </p>
-    <section class="relative py-6">
-        <ProjectsScroller />
+    <ProjectsScroller />
+
+    <section class="space-y-8">
+        <p class="text-sub-title font-heading mb-10">A bit about me</p>
+        <p class="text-small">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id dicta
+            incidunt atque aut, autem eius similique voluptatum dolores
+            accusamus. Reiciendis veritatis dolor quod nulla porro quam suscipit
+            unde vero voluptate. Ipsum pariatur perspiciatis tempora culpa
+            recusandae cumque saepe doloribus esse eligendi totam a suscipit
+            nemo unde repellendus.
+        </p>
     </section>
-    <section class="relative py-6 full-width">
-        <p class="text-sub-title font-heading mb-10">Latest Posts</p>
-    </section>
+
     <section class="space-y-8 mb-10">
+        <p class="text-sub-title font-heading mb-10">Latest Posts</p>
+
         {
             posts.map(({ slug, data: { image, title, exerpt, tags } }) => (
                 <div class="list-none relative group flex gap-4 justify-between ">
-                    <div class="text-primary-950">
+                    <div class="space-y-2">
                         <a
                             href={`/blog/${slug}`}
                             class="text-xl font-bold underline"
@@ -34,7 +48,7 @@ const posts: Post[] = await getCollection("blog");
                         {tags && (
                             <ul class="flex gap-1">
                                 {tags.map((tag) => (
-                                    <li class="text-xs p-1 border rounded bg-accent-200 text-accent-800">
+                                    <li class="text-xs p-1 rounded bg-background-100 border-secondary-400 text-text-900">
                                         {tag}
                                     </li>
                                 ))}
@@ -48,7 +62,7 @@ const posts: Post[] = await getCollection("blog");
                             height={120}
                             src={image}
                             alt=""
-                            class="object-cover bg-secondary-800 rounded-lg p-2 opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
+                            class="object-cover bg-primary-400 rounded-lg p-2 opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
                         />
                     )}
                 </div>

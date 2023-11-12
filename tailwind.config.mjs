@@ -30,6 +30,7 @@ export default {
                     800: "var(--background-800)",
                     900: "var(--background-900)",
                     950: "var(--background-950)",
+                    DEFAULT: "var(--background-default)",
                 },
                 primary: {
                     50: "var(--primary-50)",

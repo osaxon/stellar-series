@@ -10,7 +10,7 @@ const { title, description } = Astro.props;
 
 <BaseLayout title={title} description={description}>
     <Header title="Oli" links={links} />
-    <main class="content-grid flex flex-col gap-4">
+    <main class="content-grid flow">
         <slot />
     </main>
 </BaseLayout>
