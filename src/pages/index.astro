@@ -1,7 +1,10 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import { ShapeOne } from "../components/svgs/ShapeOne.tsx";
+import { Image } from "astro:assets";
 import ProjectsScroller from "../components/ProjectsScroller.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+type Post = CollectionEntry<"blog">;
+const posts: Post[] = await getCollection("blog");
 ---
 
 <PageLayout title="Welcome to Astro." description="">
@@ -19,5 +22,43 @@ import ProjectsScroller from "../components/ProjectsScroller.astro";
         <p class="text-sub-title font-heading text-secondary-800 mb-10">
             Latest Posts
         </p>
+    </section>
+    <section class="">
+        <div class="space-y-8">
+            {
+                posts.map(({ slug, data: { image, title, exerpt, tags } }) => (
+                    <div class="list-none relative group flex gap-4 justify-between">
+                        <div>
+                            <a
+                                href={`/blog/${slug}`}
+                                class="text-xl font-bold underline"
+                            >
+                                {title}
+                            </a>
+                            <p class="text max-w-md">{exerpt}</p>
+                            {tags && (
+                                <ul class="flex gap-1">
+                                    {tags.map((tag) => (
+                                        <li class="text-xs p-1 border rounded bg-accent-200 text-accent-800">
+                                            {tag}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+
+                        {image && (
+                            <Image
+                                width={120}
+                                height={120}
+                                src={image}
+                                alt=""
+                                class="object-cover opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
+                            />
+                        )}
+                    </div>
+                ))
+            }
+        </div>
     </section>
 </PageLayout>

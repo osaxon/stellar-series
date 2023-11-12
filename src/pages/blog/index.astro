@@ -1,14 +1,9 @@
 ---
-import PostsGrid from "../../components/PostsGrid";
 import { type CollectionEntry, getCollection } from "astro:content";
 import PageLayout from "../../layouts/PageLayout.astro";
-import { type Post as PostWithSlug } from "../../content/config";
+import { Image } from "astro:assets";
 type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
-const postsWithSlug: PostWithSlug[] = posts.map(({ slug, data }) => ({
-    slug,
-    ...data,
-}));
 ---
 
 <PageLayout title="Blog Posts" description="Blog posts page">
@@ -20,6 +15,43 @@ const postsWithSlug: PostWithSlug[] = posts.map(({ slug, data }) => ({
         breaking things.
     </p>
     <section class="">
-        <PostsGrid client:load posts={postsWithSlug} />
+        <div class="space-y-8">
+            {
+                posts.map(
+                    ({ slug, data: { image: img, title, exerpt, tags } }) => (
+                        <div class="list-none relative group flex gap-4 justify-between">
+                            <div>
+                                <a
+                                    href={`/blog/${slug}`}
+                                    class="text-xl font-bold underline"
+                                >
+                                    {title}
+                                </a>
+                                <p class="text max-w-md">{exerpt}</p>
+                                {tags && (
+                                    <ul class="flex gap-1">
+                                        {tags.map((tag) => (
+                                            <li class="text-xs p-1 border rounded bg-accent-200 text-accent-800">
+                                                {tag}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
+
+                            {img && (
+                                <Image
+                                    width={120}
+                                    height={120}
+                                    src={img ?? ""}
+                                    alt=""
+                                    class="object-cover opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
+                                />
+                            )}
+                        </div>
+                    )
+                )
+            }
+        </div>
     </section>
 </PageLayout>
