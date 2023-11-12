@@ -17,9 +17,13 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 ---
 
-<MarkdownLayout title={post.data.title} path="blog">
+<MarkdownLayout
+    title={post.data.title}
+    path="blog"
+    description={post.data.exerpt ?? "Blog post by Oli Saxon"}
+>
     <Content />
 </MarkdownLayout>

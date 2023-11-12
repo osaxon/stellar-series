@@ -1,46 +1,25 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { Image } from "astro:assets";
+import PostsGrid from "../../components/PostsGrid";
 import { type CollectionEntry, getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { type Post as PostWithSlug } from "../../content/config";
 type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
+const postsWithSlug: PostWithSlug[] = posts.map(({ slug, data }) => ({
+    slug,
+    ...data,
+}));
 ---
 
-<Layout title="Blog Posts">
-    <main class="@container space-y-12">
-        <h1 class="text-3xl font-bold">Blog Posts</h1>
-        <div class="grid gap-4 grid-cols-1 @xl:grid-cols-2">
-            {
-                posts.map(
-                    ({ data: { image: img, title, exerpt, tags }, slug }) => (
-                        <a
-                            href={`/blog/${slug}`}
-                            class="list-none relative group flex gap-4 justify-between"
-                        >
-                            <div>
-                                <p class="text-xl font-bold">{title}</p>
-                                <p class="">{exerpt}</p>
-                                {tags && (
-                                    <ul>
-                                        {tags.map((tag) => (
-                                            <li>{tag}</li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-                            {img && (
-                                <Image
-                                    width={120}
-                                    height={120}
-                                    src={img ?? ""}
-                                    alt=""
-                                    class="object-cover opacity-75 group-hover:opacity-100 transition-opacity"
-                                />
-                            )}
-                        </a>
-                    )
-                )
-            }
-        </div>
-    </main>
-</Layout>
+<PageLayout title="Blog Posts" description="Blog posts page">
+    <h1 class="text-title font-heading font-bold text-secondary-800">
+        Oli Saxon
+    </h1>
+    <p class="text-sub-title font-heading text-secondary-800 mb-10">
+        On a ride through the digital world, creating things & occasionally
+        breaking things.
+    </p>
+    <section class="">
+        <PostsGrid client:load posts={postsWithSlug} />
+    </section>
+</PageLayout>

@@ -2,10 +2,10 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
 
-type Project = CollectionEntry<"projects">;
+type Project = CollectionEntry<"project">;
 
 export async function getStaticPaths() {
-    const projects = await getCollection("projects");
+    const projects = await getCollection("project");
     return projects.map((project: Project) => ({
         params: { slug: project.slug },
         props: { project },
@@ -20,6 +20,10 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 ---
 
-<MarkdownLayout title={project.data.title} path="projects">
+<MarkdownLayout
+    title={project.data.title}
+    path="projects"
+    description={`A markdown page about project ${project.data.title} by Oli Saxon`}
+>
     <Content />
 </MarkdownLayout>

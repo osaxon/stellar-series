@@ -1,26 +1,45 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { Image } from "astro:assets";
 import { type CollectionEntry, getCollection } from "astro:content";
-type Project = CollectionEntry<"projects">;
-const projects: Project[] = await getCollection("projects");
+type Project = CollectionEntry<"project">;
+const projects: Project[] = await getCollection("project");
 ---
 
-<Layout title="Projects">
-    <main class="@container space-y-12">
-        <h1 class="text-3xl font-bold">Projects</h1>
-        <div class="grid gap-4 grid-cols-1 @xl:grid-cols-2">
+<PageLayout title="Welcome to Astro." description="">
+    <h1 class="text-3xl font-bold">Projects</h1>
+    <section class="space-y-6">
+        <div class="space-y-8">
             {
-                projects.map(({ data: { title }, slug }) => (
-                    <a
-                        href={`/projects/${slug}`}
-                        class="list-none relative group flex gap-4 justify-between"
-                    >
-                        <div>
-                            <p class="text-xl font-bold">{title}</p>
+                projects.map(
+                    ({
+                        slug,
+                        data: { title, description, tags, relatedPosts, image },
+                    }) => (
+                        <div class="list-none relative group flex gap-4 justify-between">
+                            <div>
+                                <a
+                                    href={`/projects/${slug}`}
+                                    class="text-xl font-bold underline"
+                                >
+                                    {title}
+                                </a>
+                                <p class="text max-w-md">{description}</p>
+                            </div>
+
+                            {image && (
+                                <Image
+                                    width={120}
+                                    height={120}
+                                    src={image}
+                                    alt=""
+                                    class="object-cover opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
+                                />
+                            )}
                         </div>
-                    </a>
-                ))
+                    )
+                )
             }
         </div>
-    </main>
-</Layout>
+    </section>
+</PageLayout>

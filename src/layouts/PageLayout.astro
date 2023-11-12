@@ -1,0 +1,16 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+const links = [
+    { label: "Blog", href: "/blog" },
+    { label: "Projects", href: "/projects" },
+];
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+    <Header title="Oli" links={links} />
+    <main class="content-grid">
+        <slot />
+    </main>
+</BaseLayout>

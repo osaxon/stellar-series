@@ -71,6 +71,13 @@ export default {
                     950: "var(--accent-950)",
                 },
             },
+            fontSize: {
+                title: "var(--text-title)",
+                "sub-title": "var(--text-sub-title)",
+            },
+            fontFamily: {
+                heading: ["var(--font-heading)"],
+            },
         },
     },
     plugins: [

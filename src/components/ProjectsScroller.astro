@@ -1,0 +1,28 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { Image } from "astro:assets";
+type Project = CollectionEntry<"project">;
+let projects: Project[] = await getCollection("project");
+projects = [...projects, ...projects, ...projects, ...projects];
+---
+
+<section class="relative projects-container full-width scroll-x">
+    <ul class="flex gap-4 relative">
+        {
+            projects &&
+                projects.map((project) => {
+                    return (
+                        <li class="flex-shrink-0 border-2 border-primary-100 rounded-lg bg-primary-50 p-4 w-[85vw] sm:w-[calc(280px+5vw)] flex items-center justify-center">
+                            <Image
+                                src={project.data.image ?? ""}
+                                width={800}
+                                height={450}
+                                alt=""
+                                class="aspect-video object-contain"
+                            />
+                        </li>
+                    );
+                })
+        }
+    </ul>
+</section>

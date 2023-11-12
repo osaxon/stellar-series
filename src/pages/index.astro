@@ -1,9 +1,23 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+import { ShapeOne } from "../components/svgs/ShapeOne.tsx";
+import ProjectsScroller from "../components/ProjectsScroller.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-    <main>
-        <h1>Welcome to <span class="text-gradient">Astro</span></h1>
-    </main>
-</Layout>
+<PageLayout title="Welcome to Astro." description="">
+    <h1 class="text-title font-heading font-bold text-secondary-900">
+        Oli Saxon
+    </h1>
+    <p class="text-secondary-900 font-heading text-sub-title mb-10">
+        Explorer in the world of software development, dipping my toes in
+        web-design & UX.
+    </p>
+    <section class="relative py-6">
+        <ProjectsScroller />
+    </section>
+    <section class="relative py-6 full-width">
+        <p class="text-sub-title font-heading text-secondary-800 mb-10">
+            Latest Posts
+        </p>
+    </section>
+</PageLayout>

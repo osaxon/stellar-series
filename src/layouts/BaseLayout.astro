@@ -1,0 +1,33 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import "@fontsource/caprasimo";
+import "@fontsource/cambo";
+import "../styles/main.css";
+interface Props {
+    title: string;
+    description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html class="light scroll-smooth" lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="description"
+            content={description ?? "Oli Saxons personal site and blog."}
+        />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <ViewTransitions />
+        <title>{title}</title>
+    </head>
+    <body
+        transition:animate="slide"
+        class="bg-background-50 text-text-950 flex flex-col gap-12"
+    >
+        <slot />
+    </body>
+</html>
