@@ -3,7 +3,7 @@ title: Test Driven Development
 tags: ["Testing", "Jest"]
 exerpt: "The code we write is not just for us. Our colleagues and potentially our users will see it, use it and try to understand it"
 relatedPosts: []
-image: "/src/content/images/E6841_001.png"
+image: "../images/E6841_004.png"
 ---
 
 # Test Driven Development (TDD)

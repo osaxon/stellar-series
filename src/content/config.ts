@@ -19,12 +19,26 @@ const blogSchema = z.object({
 
 const project = defineCollection({
     type: "content",
-    schema: projectSchema,
+    schema: ({ image }) =>
+        z.object({
+            title: z.string(),
+            description: z.string(),
+            tags: z.array(z.string()),
+            image: image(),
+            relatedPosts: z.array(reference("blog")),
+        }),
 });
 
 const blog = defineCollection({
     type: "content",
-    schema: blogSchema,
+    schema: ({ image }) =>
+        z.object({
+            title: z.string(),
+            exerpt: z.string(),
+            tags: z.array(z.string()),
+            image: image(),
+            relatedPosts: z.array(reference("blog")),
+        }),
 });
 
 // 3. Export a single `collections` object to register your collection(s)
