@@ -8,10 +8,8 @@ const posts: Post[] = await getCollection("blog");
 ---
 
 <PageLayout title="Welcome to Astro." description="">
-    <h1 class="text-title font-heading font-bold text-secondary-900">
-        Oli Saxon
-    </h1>
-    <p class="text-secondary-900 font-heading text-sub-title mb-10">
+    <h1 class="text-title font-heading font-bold">Oli Saxon</h1>
+    <p class="font-heading text-sub-title mb-10">
         Explorer in the world of software development, dipping my toes in
         web-design & UX.
     </p>
@@ -19,46 +17,42 @@ const posts: Post[] = await getCollection("blog");
         <ProjectsScroller />
     </section>
     <section class="relative py-6 full-width">
-        <p class="text-sub-title font-heading text-secondary-800 mb-10">
-            Latest Posts
-        </p>
+        <p class="text-sub-title font-heading mb-10">Latest Posts</p>
     </section>
-    <section class="">
-        <div class="space-y-8">
-            {
-                posts.map(({ slug, data: { image, title, exerpt, tags } }) => (
-                    <div class="list-none relative group flex gap-4 justify-between">
-                        <div>
-                            <a
-                                href={`/blog/${slug}`}
-                                class="text-xl font-bold underline"
-                            >
-                                {title}
-                            </a>
-                            <p class="text max-w-md">{exerpt}</p>
-                            {tags && (
-                                <ul class="flex gap-1">
-                                    {tags.map((tag) => (
-                                        <li class="text-xs p-1 border rounded bg-accent-200 text-accent-800">
-                                            {tag}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </div>
-
-                        {image && (
-                            <Image
-                                width={120}
-                                height={120}
-                                src={image}
-                                alt=""
-                                class="object-cover opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
-                            />
+    <section class="space-y-8 mb-10">
+        {
+            posts.map(({ slug, data: { image, title, exerpt, tags } }) => (
+                <div class="list-none relative group flex gap-4 justify-between ">
+                    <div class="text-primary-950">
+                        <a
+                            href={`/blog/${slug}`}
+                            class="text-xl font-bold underline"
+                        >
+                            <h3 class="text-secondary-900">{title}</h3>
+                        </a>
+                        <p class="text max-w-md">{exerpt}</p>
+                        {tags && (
+                            <ul class="flex gap-1">
+                                {tags.map((tag) => (
+                                    <li class="text-xs p-1 border rounded bg-accent-200 text-accent-800">
+                                        {tag}
+                                    </li>
+                                ))}
+                            </ul>
                         )}
                     </div>
-                ))
-            }
-        </div>
+
+                    {image && (
+                        <Image
+                            width={120}
+                            height={120}
+                            src={image}
+                            alt=""
+                            class="object-cover bg-secondary-800 rounded-lg p-2 opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
+                        />
+                    )}
+                </div>
+            ))
+        }
     </section>
 </PageLayout>

@@ -74,6 +74,8 @@ export default {
             fontSize: {
                 title: "var(--text-title)",
                 "sub-title": "var(--text-sub-title)",
+                paragraph: "var(--text-paragraph)",
+                small: "var(--text-small)",
             },
             fontFamily: {
                 heading: ["var(--font-heading)"],
