@@ -2,7 +2,7 @@ const themeToggleBtn = document.getElementById("themeToggleBtn");
 const htmlElement = document.documentElement;
 
 // Function to toggle between theme classes
-function toggleTheme() {
+export function toggleTheme() {
     const themes = ["light", "dark", "mint-choc"];
     const currentTheme = htmlElement.getAttribute("data-theme") || themes[0];
     const currentIndex = themes.indexOf(currentTheme);

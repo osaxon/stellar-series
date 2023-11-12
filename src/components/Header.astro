@@ -3,6 +3,7 @@ type Link = {
     label: string;
     href: string;
 };
+import ThemeToggle from "./ThemeToggle.astro";
 import { IconOne } from "./svgs/IconOne";
 const { title, links } = Astro.props as { title: Link; links: Link[] };
 ---
@@ -12,7 +13,7 @@ const { title, links } = Astro.props as { title: Link; links: Link[] };
         <a class="group" href="/">
             <IconOne />
         </a>
-        <button id="themeToggleBtn">Toggle Theme</button>
+        <ThemeToggle />
         <div class="flex gap-4">
             <!-- GitHub SVG Icon -->
             <a class="group justify-self-end" href="https://github.com/osaxon">

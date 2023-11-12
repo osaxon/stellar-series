@@ -1,0 +1,34 @@
+---
+
+---
+
+<button id="themeToggleBtn" data-theme-toggle class="bg-primary-400"
+    >Toggle Theme</button
+>
+
+<script>
+    const themeToggleBtn = document.getElementById("themeToggleBtn");
+    const htmlElement = document.documentElement;
+    function toggleTheme() {
+        const themes = ["light", "dark", "mint-choc"];
+        const currentTheme =
+            htmlElement.getAttribute("[data-theme-toggle]") || themes[0];
+        const currentIndex = themes.indexOf(currentTheme);
+        const nextIndex = (currentIndex + 1) % themes.length;
+        const nextTheme = themes[nextIndex];
+
+        // Remove the current theme class and add the next one
+        themes.forEach((theme) => {
+            htmlElement.classList.remove(theme);
+        });
+
+        // Add the next theme class
+        htmlElement.classList.add(nextTheme);
+
+        // Update the data-theme-toggle attribute
+        htmlElement.setAttribute("data-theme-toggle", nextTheme);
+    }
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", toggleTheme);
+    }
+</script>
