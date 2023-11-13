@@ -3,14 +3,14 @@ type Link = {
     label: string;
     href: string;
 };
-import ThemeToggle from "./ThemeToggle.astro";
+import ThemeToggle from "./ThemeToggle.tsx";
 import { IconOne } from "./svgs/IconOne";
 const { title, links } = Astro.props as { title: Link; links: Link[] };
 ---
 
 <header class="py-2" transition:animate="none">
     <nav class="flex justify-between max-w-5xl mx-auto px-[var(--space-md)]">
-        <ThemeToggle />
+        <ThemeToggle client:load />
         <a class="group" href="/">
             <IconOne />
         </a>

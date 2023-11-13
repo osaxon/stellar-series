@@ -18,9 +18,7 @@ const { title, path, description } = Astro.props;
         links={[{ label: "home", href: "/" }]}
     />
     <main class="@container content-grid">
-        <article
-            class="prose @xl:prose-lg py-8 prose-li:list-none dark:prose-invert"
-        >
+        <article class="blog-post">
             <slot />
         </article>
     </main>

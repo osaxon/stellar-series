@@ -72,6 +72,17 @@ export default {
                     950: "var(--accent-950)",
                 },
             },
+            margin: {
+                xs: "var(--space-xs)",
+                sm: "var(--space-sm)",
+                md: "var(--space-md)",
+                lg: "var(--space-lg)",
+            },
+            space: {
+                sm: "var(--space-sm)",
+                md: "var(--space-md)",
+                lg: "var(--space-lg)",
+            },
             fontSize: {
                 title: "var(--text-title)",
                 "sub-title": "var(--text-sub-title)",

@@ -9,6 +9,15 @@
         --text-sub-title: clamp(1.44rem, calc(1.18rem + 1.03vw), 1.95rem);
         --text-paragraph: clamp(1.25rem, calc(1rem + 1.03vw), 1.7rem);
         --text-small: clamp(1rem, calc(0.9rem + 0.7vw), 1.25rem);
+        --font--2: clamp(0.69rem, calc(0.64rem + 0.21vw), 0.8rem);
+        --font--1: clamp(0.83rem, calc(0.75rem + 0.33vw), 1rem);
+        --font-0: clamp(1rem, calc(0.88rem + 0.5vw), 1.25rem);
+        --font-1: clamp(1.2rem, calc(1.02rem + 0.73vw), 1.56rem);
+        --font-2: clamp(1.44rem, calc(1.18rem + 1.03vw), 1.95rem);
+        --font-3: clamp(1.73rem, calc(1.37rem + 1.43vw), 2.44rem);
+        --font-4: clamp(2.07rem, calc(1.58rem + 1.96vw), 3.05rem);
+        --font-5: clamp(2.49rem, calc(1.82rem + 2.65vw), 3.82rem);
+
         --font-heading: "Cambo";
         --space-3xs: clamp(0.25rem, calc(0.23rem + 0.12vw), 0.31rem);
         --space-2xs: clamp(0.5rem, calc(0.48rem + 0.12vw), 0.56rem);
@@ -240,12 +249,41 @@ h4 {
     font-family: var(--font-heading);
 }
 
-.flow>*+* {
-    margin-block-start: var(--space-3xs);
+a {
+    text-decoration: underline;
 }
 
 * {
     color: var(--secondary-900);
+}
+
+
+.flow>*+* {
+    margin-block-start: var(--space-3xs);
+}
+
+.blog-post>h1 {
+    font-size: var(--font-5);
+    margin-bottom: var(--space-sm);
+}
+
+.blog-post>h2 {
+    font-size: var(--font-4);
+    margin-bottom: var(--space-sm);
+}
+
+.blog-post>h3 {
+    font-size: var(--font-3);
+    margin-bottom: var(--space-sm);
+}
+
+.blog-post>h4 {
+    font-size: var(--font-1);
+    margin-bottom: var(--space-sm);
+}
+
+.blog-post>p {
+    font-size: var(--font-0);
 }
 
 .cls-1 {

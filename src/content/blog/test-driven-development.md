@@ -2,6 +2,7 @@
 title: Test Driven Development
 tags: ["Testing", "Jest"]
 exerpt: "The code we write is not just for us. Our colleagues and potentially our users will see it, use it and try to understand it"
+published: "2023-10-13"
 relatedPosts: []
 image: "../images/E6841_022.svg"
 ---

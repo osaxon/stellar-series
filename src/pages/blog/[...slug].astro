@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
-
+import dayjs from "dayjs";
 type Post = CollectionEntry<"blog">;
 
 export async function getStaticPaths() {
@@ -17,6 +17,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
+console.log(Astro.props);
 const { Content, headings } = await post.render();
 ---
 
@@ -25,5 +26,6 @@ const { Content, headings } = await post.render();
     path="blog"
     description={post.data.exerpt ?? "Blog post by Oli Saxon"}
 >
+    <p>{dayjs(post.data.published).format("DD MMM YYYY")}</p>
     <Content />
 </MarkdownLayout>
