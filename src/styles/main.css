@@ -389,3 +389,15 @@ h4 {
 [data-theme="mint-choc"] .theme-toggle-main {
     fill: var(--secondary-900);
 }
+
+[data-theme="light"] .theme-toggle-main-2 {
+    fill: var(--background-700);
+}
+
+[data-theme="dark"] .theme-toggle-main-2 {
+    fill: var(--primary-700);
+}
+
+[data-theme="mint-choc"] .theme-toggle-main-2 {
+    fill: var(--secondary-700);
+}
