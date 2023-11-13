@@ -20,6 +20,11 @@
         --space-2xl: clamp(4rem, calc(3.8rem + 0.98vw), 4.5rem);
         --space-3xl: clamp(6rem, calc(5.71rem + 1.46vw), 6.75rem);
         --page-padding: clamp(var(--space-sm), 6vw, var(--space-md));
+
+        --danger: #F1655B;
+        --success: #80fe97;
+        --info: #5148fe;
+        --neutral: #e1e1e8;
     }
 
     .light {
@@ -319,4 +324,68 @@ h4 {
     overflow-x: scroll;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
+}
+
+/* light theme toggle variants */
+[data-theme="light"] .theme-toggle-1 {
+    fill: var(--danger);
+}
+
+[data-theme="light"] .theme-toggle-2 {
+    fill: var(--success);
+}
+
+[data-theme="light"] .theme-toggle-3 {
+    fill: var(--neutral);
+}
+
+[data-theme="light"] .theme-toggle-3 {
+    fill: var(--info);
+}
+
+/* dark theme toggle variants */
+[data-theme="dark"] .theme-toggle-1 {
+    fill: var(--success);
+}
+
+[data-theme="dark"] .theme-toggle-2 {
+    fill: var(--neutral);
+}
+
+[data-theme="dark"] .theme-toggle-3 {
+    fill: var(--info);
+}
+
+[data-theme="dark"] .theme-toggle-3 {
+    fill: var(--danger);
+}
+
+/* mint choc theme toggle variants */
+[data-theme="mint-choc"] .theme-toggle-1 {
+    fill: var(--neutral);
+}
+
+[data-theme="mint-choc"] .theme-toggle-2 {
+    fill: var(--info);
+}
+
+[data-theme="mint-choc"] .theme-toggle-3 {
+    fill: var(--danger);
+}
+
+[data-theme="mint-choc"] .theme-toggle-3 {
+    fill: var(--success);
+}
+
+
+[data-theme="light"] .theme-toggle-main {
+    fill: var(--background-900);
+}
+
+[data-theme="dark"] .theme-toggle-main {
+    fill: var(--primary-900);
+}
+
+[data-theme="mint-choc"] .theme-toggle-main {
+    fill: var(--secondary-900);
 }

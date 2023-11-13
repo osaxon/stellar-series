@@ -1,9 +1,9 @@
 ---
-
+import { Square } from "../components/svgs/Square";
 ---
 
-<button id="themeToggleBtn" data-theme-toggle class="bg-primary-400"
-    >Toggle Theme</button
+<button id="themeToggleBtn" data-theme-toggle class="w-10 h-10"
+    ><Square /></button
 >
 
 <script>
@@ -11,8 +11,9 @@
     const htmlElement = document.documentElement;
     function toggleTheme() {
         const themes = ["light", "dark", "mint-choc"];
+
         const currentTheme =
-            htmlElement.getAttribute("[data-theme-toggle]") || themes[0];
+            htmlElement.getAttribute("data-theme") || themes[0];
         const currentIndex = themes.indexOf(currentTheme);
         const nextIndex = (currentIndex + 1) % themes.length;
         const nextTheme = themes[nextIndex];
@@ -26,7 +27,7 @@
         htmlElement.classList.add(nextTheme);
 
         // Update the data-theme-toggle attribute
-        htmlElement.setAttribute("data-theme-toggle", nextTheme);
+        htmlElement.setAttribute("data-theme", nextTheme);
     }
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener("click", toggleTheme);
