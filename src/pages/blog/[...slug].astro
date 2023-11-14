@@ -17,8 +17,8 @@ interface Props {
 }
 
 const { post } = Astro.props;
-console.log(Astro.props);
 const { Content, headings } = await post.render();
+import PostMeta from "../../components/PostMeta";
 ---
 
 <MarkdownLayout
@@ -26,6 +26,8 @@ const { Content, headings } = await post.render();
     path="blog"
     description={post.data.exerpt ?? "Blog post by Oli Saxon"}
 >
-    <p>{dayjs(post.data.published).format("DD MMM YYYY")}</p>
+    <h1>{post.data.title}</h1>
+    <h4>{post.data.exerpt}</h4>
+    <PostMeta published={post.data.published} readTime="10" />
     <Content />
 </MarkdownLayout>
