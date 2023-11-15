@@ -17,7 +17,8 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+const { Content, headings } = await project.render();
+console.log(headings);
 ---
 
 <MarkdownLayout
@@ -25,5 +26,7 @@ const { Content } = await project.render();
     path="projects"
     description={`A markdown page about project ${project.data.title} by Oli Saxon`}
 >
+    <h1>{project.data.title}</h1>
+    <h4>{project.data.description}</h4>
     <Content />
 </MarkdownLayout>

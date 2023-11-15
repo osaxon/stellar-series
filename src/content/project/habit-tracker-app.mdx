@@ -1,0 +1,122 @@
+---
+title: Habit Tracker App
+description: "An app which lets users pick and track activity against good habits. Includes an invite only authentication flow, made possible with NextJS, NextAuth and Prisma."
+tags: ["NextJS", "Auth"]
+image: "../images/lotus-flower.png"
+relatedPosts: []
+relatedProjects: ['three-little-birds']
+---
+import { Prism } from '@astrojs/prism';
+import BlogPostImage from "../../components/BlogPostImage"
+
+### Table of Contents
+- [Summary](#summary)
+- [Planning](#planning)
+- [Authentication](#authentication)
+  - [JWT Callback](#jwt-callback)
+  - [Session Callback](#session-callback)
+- [Handling First-Time Login](#handling-first-time-login)
+
+
+### Summary
+
+This is an inprogress side project where I'm exploring the functionalities of the new App router and Server Actions in Next.js.  
+<br/>
+
+#### Planning 
+
+The last project I did before this one 
+
+### Authentication  
+
+One of my main goals for the project was to implement an authentication flow that allows me (or another an admin) to invite users by email to sign up to my app. This is a pretty common technique used with small SaaS products and start-ups, and if I'm ever going to think of that million dollar idea, gotta be ready to roll with these features!
+<br/>
+Here's a high level diagram of how I've achieved this.
+
+<BlogPostImage alt="diagram of authentication flow flow" srcset={{default: "https://res.cloudinary.com/djaiep6vj/image/upload/v1700060413/habit-auth-flow_ff7kkb.png", narrow:"https://res.cloudinary.com/djaiep6vj/image/upload/v1700066334/habit-auth-flow-narrow_pyxcmm.png" }} />
+
+#### JWT Callback
+
+The JWT callback is responsible for updating the token based on user information fetched during the authentication flow with NextAuth. I've configured NextAuth to use the Prisma database adapater, which means the JWT callback gets the information about the user from the User table in my database.
+
+In the context of this setup, it plays a crucial role in customizing the token with specific user details such as the user's ID, role, and name. Additionally, it handles token updates triggered from the client side, ensuring that the token always reflects the latest user information retrieved from the MySQL database through Prisma's findUnique method. This mechanism contributes to a secure and up-to-date authentication process within the Next.js application, aligning with the project's goal of experimenting with the new App router and Server Actions in Next.js.
+
+When a user is authenticated (user is present), the callback adds specific user information (e.g., id, role, name) to the token.
+
+If the trigger is set to "update" (initiated from the client with the useSession hook), it fetches the latest user details from the database using Prisma's findUnique method and then updates the token with the fetched user information.
+
+<Prism lang="js" code={`async jwt({ token, user, trigger }) {
+            if (user) {
+                token.id = user.id;
+                token.role = user.role;
+                token.name = user.name;
+            }
+
+            // triggered from client with useSession hook
+            if (trigger === "update") {
+                // the user obj is only available during sign in so we look up the user to get the updates from the db
+                const user = await prisma.user.findUnique({
+                    where: { id: token.id },
+                });
+
+                // update the token
+                if (user) {
+                    token.image = user?.image;
+                    // other properties updates...
+                }
+            }
+
+            return token;
+        },`}/>
+
+#### Session callback
+
+The Session callback is responsible for updating the user session based on the token information. It is executed after the JWT callback completes.
+If both the token and the session's user information are available, it synchronizes key user details (id, role, name) between the token and the session.
+Additionally, it sets the user's image in the session, considering either the token's image or picture property.
+
+<Prism lang="js" code={`async session({ session, token }) {
+            if (token && session.user) {
+                session.user.id = token.id;
+                session.user.role = token.role;
+                session.user.name = token.name;
+                session.user.image = token.image ?? token.picture;
+            }
+
+            return session;
+        },`}/>
+
+#### Handling First-Time Login
+
+The signIn callback checks if the user does not have a role assigned, implying it's their first time logging in. We can be sure of this as the database schema assigns a default role when a User is created, which only occurs after a succesful sign in.  
+
+If there's no role and an email is associated with the user, it queries the database using Prisma to find an unused invitation linked to that email.  
+
+If no valid invitation is found, it sets isAllowedToSignIn to false, indicating the user is not allowed to sign in. This ensures only users who have been invited to the app by an admin are able to sign in.
+
+<Prism lang="js" code={` async signIn({ user }) {
+            let isAllowedToSignIn = true;
+
+            // if the user doesn't have a role yet we can be sure this is the first time logging in
+            // a default 'user' role us assigned to all new users in the database when created by the prisma adapter
+            // in this case, we want to check if there's a valid invitation associated with the email signing in
+            if (!user.role && user.email) {
+                const invitation = await prisma.invitations.findFirst({
+                    where: { email: user.email, used: false },
+                });
+
+                // throw error if no invitation
+                if (!invitation) {
+                    isAllowedToSignIn = false;
+                }
+            }
+
+            return isAllowedToSignIn;
+        },`} />
+
+
+Check out this brief video demo showcasing the essentials of both the user and admin dashboards (please note there's no sound—I prefer not to hear my own voice!).
+
+<div class="my-lg">
+    https://youtu.be/s3RuliVf8JY
+</div>

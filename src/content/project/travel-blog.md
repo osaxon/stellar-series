@@ -4,5 +4,6 @@ description: "A travel blog and photo gallaery app powered by NextJS, Notion and
 tags: ["NextJS", "Photos"]
 image: "../images/blog.png"
 relatedPosts: []
+relatedProjects: []
 ---
 

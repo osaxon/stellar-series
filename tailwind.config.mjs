@@ -83,6 +83,9 @@ export default {
                 md: "var(--space-md)",
                 lg: "var(--space-lg)",
             },
+            height: {
+                small: "var(--small)",
+            },
             fontSize: {
                 title: "var(--text-title)",
                 "sub-title": "var(--text-sub-title)",

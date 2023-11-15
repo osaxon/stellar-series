@@ -9,6 +9,7 @@ const project = defineCollection({
             tags: z.array(z.string()),
             image: image(),
             relatedPosts: z.array(reference("blog")),
+            relatedProjects: z.array(reference("project")),
         }),
 });
 

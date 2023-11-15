@@ -30,6 +30,8 @@
         --space-3xl: clamp(6rem, calc(5.71rem + 1.46vw), 6.75rem);
         --page-padding: clamp(var(--space-sm), 6vw, var(--space-md));
 
+        --small: clamp(20rem, calc(22rem + 4vw), 22rem);
+
         --danger: #F1655B;
         --success: #80fe97;
         --info: #5148fe;
@@ -252,11 +254,6 @@ h4 {
 a {
     text-decoration: underline;
 }
-
-* {
-    color: var(--secondary-900);
-}
-
 
 .flow>*+* {
     margin-block-start: var(--space-3xs);
