@@ -13,13 +13,13 @@ const posts: Post[] = await getCollection("blog");
         web-design & UX.`}
 >
     <h1 class="text-title font-heading font-bold">Oli Saxon</h1>
-    <p class="font-heading text-sub-title mb-lg">
+    <p class="font-heading text-sub-title mb-md">
         Explorer in the world of software development, dipping my toes in
         web-design & UX.
     </p>
     <ProjectsScroller />
 
-    <section class="mb-lg">
+    <section class="mb-lg full-width bg-primary-300 text-text-800 py-6">
         <p class="text-sub-title font-heading mb-sm">A bit about me</p>
         <p class="text-small mb-xs">
             I'm an enthusiastic full-stack software developer, trying to bridge
@@ -53,7 +53,7 @@ const posts: Post[] = await getCollection("blog");
         <ul class="space-y-md">
             {
                 posts.map(({ slug, data: { image, title, exerpt, tags } }) => (
-                    <div class="list-none relative group flex gap-4 justify-between ">
+                    <li class="list-none bg-secondary-50 p-4 rounded relative group flex gap-4 justify-between ">
                         <div class="space-y-2">
                             <a
                                 href={`/blog/${slug}`}
@@ -72,7 +72,7 @@ const posts: Post[] = await getCollection("blog");
                                 </ul>
                             )}
                         </div>
-                    </div>
+                    </li>
                 ))
             }
         </ul>

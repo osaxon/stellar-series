@@ -5,15 +5,31 @@ type Link = {
 };
 import ThemeToggle from "./ThemeToggle.tsx";
 import { IconOne } from "./svgs/IconOne";
-const { title, links } = Astro.props as { title: Link; links: Link[] };
+const { pathname } = Astro.url;
+console.log(pathname);
 ---
 
 <header class="py-2" transition:animate="none">
-    <nav class="flex justify-between max-w-5xl mx-auto px-[var(--space-md)]">
+    <div class="flex justify-between max-w-5xl mx-auto px-[var(--space-md)]">
         <ThemeToggle client:load />
-        <a class="group" href="/">
-            <IconOne />
-        </a>
+        {
+            pathname !== "/" && (
+                <nav class="flex items-end gap-2">
+                    <a href="/blog" aria-label="Blog">
+                        More posts
+                    </a>
+                    <a class="group" href="/" aria-label="Home">
+                        <IconOne />
+                        <span>Home</span>
+                    </a>
+                    <a href="/projects" aria-label="Projects">
+                        Projects
+                    </a>
+                </nav>
+            )
+        }
+
+        <!-- Social Links -->
         <div class="flex gap-4">
             <!-- GitHub SVG Icon -->
             <a class="group justify-self-end" href="https://github.com/osaxon">
@@ -45,5 +61,5 @@ const { title, links } = Astro.props as { title: Link; links: Link[] };
                 </svg>
             </a>
         </div>
-    </nav>
+    </div>
 </header>

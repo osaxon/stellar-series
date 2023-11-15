@@ -15,21 +15,21 @@ export default function PostsGrid({ posts }: { posts: Post[] }) {
     };
     return (
         <>
-            <ul class="flex gap-2 items-center w-72">
-                <li class="py-1 text-xs">Selected tags:</li>
+            <ul className="flex gap-2 items-center w-72">
+                <li className="py-1 text-xs">Selected tags:</li>
                 {selectedTags.value &&
                     selectedTags.value.map((tag) => (
                         <li>
                             <button
                                 onClick={() => addTag(tag)}
-                                class="text-xs p-1 border rounded bg-accent-200 text-accent-800"
+                                className="text-xs p-1 border rounded bg-accent-200 text-accent-800"
                             >
                                 {tag}
                             </button>
                         </li>
                     ))}
             </ul>
-            <div class="space-y-8">
+            <div className="space-y-8">
                 {posts
                     .filter(
                         (post) =>
@@ -39,22 +39,22 @@ export default function PostsGrid({ posts }: { posts: Post[] }) {
                             )
                     )
                     .map(({ image: img, title, exerpt, tags, slug }) => (
-                        <div class="list-none relative group flex gap-4 justify-between">
+                        <div className="list-none relative group flex gap-4 justify-between">
                             <div>
                                 <a
                                     href={`/blog/${slug}`}
-                                    class="text-xl font-bold underline"
+                                    className="text-xl font-bold underline"
                                 >
                                     {title}
                                 </a>
-                                <p class="text max-w-md">{exerpt}</p>
+                                <p className="text max-w-md">{exerpt}</p>
                                 {tags && (
-                                    <ul class="flex gap-1">
+                                    <ul className="flex gap-1">
                                         {tags.map((tag) => (
                                             <li>
                                                 <button
                                                     onClick={() => addTag(tag)}
-                                                    class="text-xs p-1 border rounded bg-accent-200 text-accent-800"
+                                                    className="text-xs p-1 border rounded bg-accent-200 text-accent-800"
                                                 >
                                                     {tag}
                                                 </button>
@@ -70,7 +70,7 @@ export default function PostsGrid({ posts }: { posts: Post[] }) {
                                     height={120}
                                     src={img ?? ""}
                                     alt=""
-                                    class="object-cover opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
+                                    className="object-cover opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
                                 />
                             )}
                         </div>

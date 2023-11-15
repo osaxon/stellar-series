@@ -1,4 +1,4 @@
-import type { SVGProps } from "preact/compat";
+import type { SVGProps } from "react";
 
 export const ShapeOne = (props: SVGProps<SVGSVGElement>) => (
     <svg

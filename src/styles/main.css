@@ -47,129 +47,129 @@
     }
 
     .light {
-        --text-50: #eef6f3;
-        --text-100: #ddeee7;
-        --text-200: #bbddcf;
-        --text-300: #99ccb8;
-        --text-400: #77bba0;
-        --text-500: #55aa88;
-        --text-600: #44886d;
-        --text-700: #336652;
-        --text-800: #224436;
-        --text-900: #11221b;
-        --text-950: #09110e;
+        --text-50: #f6efee;
+        --text-100: #eee0dd;
+        --text-200: #dcc1bc;
+        --text-300: #cba19a;
+        --text-400: #ba8278;
+        --text-500: #a86357;
+        --text-600: #874f45;
+        --text-700: #653b34;
+        --text-800: #432823;
+        --text-900: #221411;
+        --text-950: #110a09;
 
-        --background-default: #dcefe6;
-        --background-50: #eef7f3;
-        --background-100: #dcefe6;
-        --background-200: #badece;
-        --background-300: #97ceb5;
-        --background-400: #74be9d;
-        --background-500: #52ad84;
-        --background-600: #418b6a;
-        --background-700: #31684f;
-        --background-800: #214535;
-        --background-900: #10231a;
-        --background-950: #08110d;
+        --background-default: #d6c2c2;
+        --background-50: #d6c2c2;
+        --background-100: #ebe0e0;
+        --background-200: #d6c2c2;
+        --background-300: #c2a3a3;
+        --background-400: #ad8585;
+        --background-500: #996666;
+        --background-600: #7a5252;
+        --background-700: #5c3d3d;
+        --background-800: #3d2929;
+        --background-900: #1f1414;
+        --background-950: #0f0a0a;
 
-        --primary-50: #eef7f3;
-        --primary-100: #dcefe8;
-        --primary-200: #b9dfd0;
-        --primary-300: #96cfb9;
-        --primary-400: #73bfa2;
-        --primary-500: #50af8b;
-        --primary-600: #408c6f;
-        --primary-700: #306953;
-        --primary-800: #204637;
-        --primary-900: #10231c;
-        --primary-950: #08110e;
+        --primary-50: #fef6e7;
+        --primary-100: #fceccf;
+        --primary-200: #f9da9f;
+        --primary-300: #f7c76e;
+        --primary-400: #f4b43e;
+        --primary-500: #f1a20e;
+        --primary-600: #c1810b;
+        --primary-700: #916108;
+        --primary-800: #604106;
+        --primary-900: #302003;
+        --primary-950: #181001;
 
-        --secondary-50: #eef7f3;
-        --secondary-100: #dcefe7;
-        --secondary-200: #b9dfd0;
-        --secondary-300: #96cfb8;
-        --secondary-400: #73bfa1;
-        --secondary-500: #50af89;
-        --secondary-600: #408c6e;
-        --secondary-700: #306952;
-        --secondary-800: #204637;
-        --secondary-900: #10231b;
-        --secondary-950: #08110e;
+        --secondary-50: #eff5f6;
+        --secondary-100: #deebed;
+        --secondary-200: #bdd7db;
+        --secondary-300: #9cc4c9;
+        --secondary-400: #7bb0b7;
+        --secondary-500: #5b9ca4;
+        --secondary-600: #487d84;
+        --secondary-700: #365e63;
+        --secondary-800: #243e42;
+        --secondary-900: #121f21;
+        --secondary-950: #091010;
 
-        --accent-50: #eef7f3;
-        --accent-100: #dcefe8;
-        --accent-200: #b9dfd0;
-        --accent-300: #96cfb9;
-        --accent-400: #73bfa2;
-        --accent-500: #50af8b;
-        --accent-600: #408c6f;
-        --accent-700: #306953;
-        --accent-800: #204637;
-        --accent-900: #10231c;
-        --accent-950: #08110e;
+        --accent-50: #f3eef6;
+        --accent-100: #e8deed;
+        --accent-200: #d1bddb;
+        --accent-300: #b99cc9;
+        --accent-400: #a27ab8;
+        --accent-500: #8b59a6;
+        --accent-600: #6f4785;
+        --accent-700: #533663;
+        --accent-800: #382442;
+        --accent-900: #1c1221;
+        --accent-950: #0e0911;
     }
 
     .dark {
-        --text-50: #09110e;
-        --text-100: #11221b;
-        --text-200: #224436;
-        --text-300: #336652;
-        --text-400: #44886d;
-        --text-500: #55aa88;
-        --text-600: #77bba0;
-        --text-700: #99ccb8;
-        --text-800: #bbddcf;
-        --text-900: #ddeee7;
-        --text-950: #eef6f3;
+        --text-50: #120712;
+        --text-100: #240f24;
+        --text-200: #491d49;
+        --text-300: #6d2c6d;
+        --text-400: #923a92;
+        --text-500: #b649b6;
+        --text-600: #c56dc5;
+        --text-700: #d392d3;
+        --text-800: #e2b6e2;
+        --text-900: #f0dbf0;
+        --text-950: #f8edf8;
 
-        --background-default: #10231a;
-        --background-50: #08110d;
-        --background-100: #10231a;
-        --background-200: #214535;
-        --background-300: #31684f;
-        --background-400: #418b6a;
-        --background-500: #52ad84;
-        --background-600: #74be9d;
-        --background-700: #97ceb5;
-        --background-800: #badece;
-        --background-900: #dcefe6;
-        --background-950: #eef7f3;
+        --background-default: #130713;
+        --background-50: #130713;
+        --background-100: #250e25;
+        --background-200: #4b1b4b;
+        --background-300: #702970;
+        --background-400: #963696;
+        --background-500: #bb44bb;
+        --background-600: #c969c9;
+        --background-700: #d68fd6;
+        --background-800: #e4b4e4;
+        --background-900: #f1daf1;
+        --background-950: #f8ecf8;
 
-        --primary-50: #08110e;
-        --primary-100: #10231c;
-        --primary-200: #204637;
-        --primary-300: #306953;
-        --primary-400: #408c6f;
-        --primary-500: #50af8b;
-        --primary-600: #73bfa2;
-        --primary-700: #96cfb9;
-        --primary-800: #b9dfd0;
-        --primary-900: #dcefe8;
-        --primary-950: #eef7f3;
+        --primary-50: #12070c;
+        --primary-100: #240f18;
+        --primary-200: #491d31;
+        --primary-300: #6d2c49;
+        --primary-400: #923a62;
+        --primary-500: #b6497a;
+        --primary-600: #c56d95;
+        --primary-700: #d392af;
+        --primary-800: #e2b6ca;
+        --primary-900: #f0dbe4;
+        --primary-950: #f8edf2;
 
-        --secondary-50: #08110e;
-        --secondary-100: #10231b;
-        --secondary-200: #204637;
-        --secondary-300: #306952;
-        --secondary-400: #408c6e;
-        --secondary-500: #50af89;
-        --secondary-600: #73bfa1;
-        --secondary-700: #96cfb8;
-        --secondary-800: #b9dfd0;
-        --secondary-900: #dcefe7;
-        --secondary-950: #eef7f3;
+        --secondary-50: #081208;
+        --secondary-100: #0f2410;
+        --secondary-200: #1e4820;
+        --secondary-300: #2d6c30;
+        --secondary-400: #3c9040;
+        --secondary-500: #4bb450;
+        --secondary-600: #6fc373;
+        --secondary-700: #93d296;
+        --secondary-800: #b7e1b9;
+        --secondary-900: #dbf0dc;
+        --secondary-950: #edf7ee;
 
-        --accent-50: #08110e;
-        --accent-100: #10231c;
-        --accent-200: #204637;
-        --accent-300: #306953;
-        --accent-400: #408c6f;
-        --accent-500: #50af8b;
-        --accent-600: #73bfa2;
-        --accent-700: #96cfb9;
-        --accent-800: #b9dfd0;
-        --accent-900: #dcefe8;
-        --accent-950: #eef7f3;
+        --accent-50: #07120d;
+        --accent-100: #0f241b;
+        --accent-200: #1d4935;
+        --accent-300: #2c6d50;
+        --accent-400: #3a926a;
+        --accent-500: #49b685;
+        --accent-600: #6dc59d;
+        --accent-700: #92d3b6;
+        --accent-800: #b6e2ce;
+        --accent-900: #dbf0e7;
+        --accent-950: #edf8f3;
     }
 
     .mint-choc {
@@ -329,19 +329,6 @@ a {
 
     display: grid;
     grid-template-columns: inherit;
-}
-
-.grainy-background::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-repeat: repeat;
-    background-image: url('public/grain.png');
-    /* Replace with the path to your grain texture */
-    opacity: 0.1;
 }
 
 .projects-container {
