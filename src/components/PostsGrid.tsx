@@ -1,5 +1,14 @@
 import { Signal, signal } from "@preact/signals";
-import { type Post } from "../content/config";
+
+type Post = {
+    slug: string;
+    title: string;
+    exerpt: string;
+    published: string;
+    tags: Array<string>;
+    image: string;
+    relatedPosts: Array<string>;
+};
 
 const selectedTags: Signal<Array<string>> = signal([]);
 

@@ -1,27 +1,30 @@
-import { useAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
-import { useEffect } from "react";
+import { signal } from "@preact/signals";
+import { useEffect } from "preact/hooks";
 import { Square } from "./svgs/Square";
 
-const themeAtom = atomWithStorage("theme", "light");
+const theme = signal("light");
 
 export default function ThemeToggle() {
     const themes = ["light", "dark", "mint-choc"];
-    const [theme, setTheme] = useAtom(themeAtom);
+
+    useEffect(() => {
+        theme.value = window.localStorage.getItem("theme") || "light";
+    }, []);
 
     const toggleTheme = () => {
-        const currentIndex = themes.indexOf(theme);
+        const currentIndex = themes.indexOf(theme.value);
         const nextIndex = (currentIndex + 1) % themes.length;
         const nextTheme = themes[nextIndex];
         // Update the theme in the component state
-        setTheme(nextTheme);
+        theme.value = nextTheme;
     };
 
     useEffect(() => {
         document.documentElement.classList.remove(...themes);
-        document.documentElement.classList.add(theme);
-        document.documentElement.setAttribute("data-theme", theme);
-    }, [theme]);
+        document.documentElement.classList.add(theme.value);
+        document.documentElement.setAttribute("data-theme", theme.value);
+        window.localStorage.setItem("theme", theme.value);
+    }, [theme.value]);
 
     return (
         <button

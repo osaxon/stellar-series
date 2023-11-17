@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { CalendarDays, Timer } from "lucide-react";
+import { CalendarDays, Timer } from "lucide-preact";
 
 export default function PostMeta({
     published,

@@ -1,4 +1,4 @@
-import { type SVGProps } from "react";
+import { type SVGProps } from "preact/compat";
 
 export const IconOne = (props: SVGProps<SVGSVGElement>) => (
     <svg

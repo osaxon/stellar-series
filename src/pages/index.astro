@@ -19,7 +19,7 @@ const posts: Post[] = await getCollection("blog");
     </p>
     <ProjectsScroller />
 
-    <section class="mb-lg full-width bg-primary-300 text-text-800 py-6">
+    <section class="mb-lg full-width bg-secondary-100 text-text-800 py-6">
         <p class="text-sub-title font-heading mb-sm">A bit about me</p>
         <p class="text-small mb-xs">
             I'm an enthusiastic full-stack software developer, trying to bridge
@@ -53,7 +53,7 @@ const posts: Post[] = await getCollection("blog");
         <ul class="space-y-md">
             {
                 posts.map(({ slug, data: { image, title, exerpt, tags } }) => (
-                    <li class="list-none bg-secondary-50 p-4 rounded relative group flex gap-4 justify-between ">
+                    <li class="list-none rounded relative group flex gap-4 justify-between ">
                         <div class="space-y-2">
                             <a
                                 href={`/blog/${slug}`}
