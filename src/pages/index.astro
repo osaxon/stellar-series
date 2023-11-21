@@ -1,7 +1,7 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
-import { ShapeOne } from "../components/svgs/ShapeOne";
 type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
 ---
@@ -11,25 +11,32 @@ const posts: Post[] = await getCollection("blog");
         web-design & UX.`}
 >
     <section
-        class="bg-gradient-to-b relative from-background min-h-[calc(100svh-56px)] to-secondary-100 full-width"
+        class="bg-gradient-to-b relative from-background to-secondary-100 full-width content-grid"
     >
         <h1 class="text-title z-50 font-heading font-bold flex items-end">
             Oli Saxon
         </h1>
-        <p class="font-heading z-50 text-sub-title mb-md">
+        <p class="font-heading text-sub-title mb-md">
             If software development is a game, I'm currently grinding for that
             next level and wondering how everyone else around me seems to be
             maxed out.
         </p>
-        <ShapeOne />
+        <div class="hero-banner content-grid full-width h-[30vh]">
+            <div
+                class="relative h-full bg-secondary-500 mix-blend-screen full-width overflow-hidden"
+            >
+            </div>
+        </div>
     </section>
 
     <section
-        class="mb-lg full-width min-h-[70svh] bg-secondary-100 text-text-800 py-6"
+        class="full-width min-h-[70svh] bg-secondary-100 text-text-800 py-6"
     >
+        <p class="text-sub-title font-heading mb-sm">A bit about me</p>
+
         <p class="text-small mb-xs">
-            I'm a full-stack software developer trying to join the dots between
-            design and development.
+            I'm a full-stack software developer working with JavaScript &
+            Typescript, Node and React.
         </p>
         <p class="text-small mb-xs">
             As a new member in the field, I appreciate the chance to collaborate
@@ -50,7 +57,7 @@ const posts: Post[] = await getCollection("blog");
         </p>
     </section>
 
-    <section class="mb-lg">
+    <section class="mb-lg py-8">
         <p class="text-sub-title font-heading mb-sm">Latest Posts</p>
         <p class="text-small mb-lg">
             My thoughts and insights on my jouryney into web development,
@@ -84,3 +91,11 @@ const posts: Post[] = await getCollection("blog");
         </ul>
     </section>
 </PageLayout>
+
+<style>
+    .hero-banner {
+        background-image: url("https://res.cloudinary.com/djaiep6vj/image/upload/v1700609385/iPhone_14_-_1_ejp5jw.png");
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>

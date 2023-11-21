@@ -2,12 +2,10 @@ import type { SVGProps } from "preact/compat";
 
 export const ShapeOne = (props: SVGProps<SVGSVGElement>) => (
     <svg
-        width="100%"
-        height="90%"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="230 30 300 700"
+        viewBox="300 0 600 700"
         data-name="Layer 1"
-        className="absolute scale-[0.8] -scale-x-90 left-0 bottom-0 z-0"
+        className="absolute -scale-x-90 z-0left-0 top-0 lg:w-[600px] w-[300px]"
         {...props}
     >
         <g className="layer">
