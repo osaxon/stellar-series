@@ -48,7 +48,7 @@ export default function PostsGrid({ posts }: { posts: Post[] }) {
                             )
                     )
                     .map(({ image: img, title, exerpt, tags, slug }) => (
-                        <div className="list-none relative group flex gap-4 justify-between">
+                        <div className="list-none relative group">
                             <div>
                                 <a
                                     href={`/blog/${slug}`}
@@ -72,16 +72,6 @@ export default function PostsGrid({ posts }: { posts: Post[] }) {
                                     </ul>
                                 )}
                             </div>
-
-                            {img && (
-                                <img
-                                    width={120}
-                                    height={120}
-                                    src={img ?? ""}
-                                    alt=""
-                                    className="object-cover opacity-75 group-hover:opacity-100 transition-opacity max-w-full"
-                                />
-                            )}
                         </div>
                     ))}
             </div>

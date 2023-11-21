@@ -3,7 +3,6 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import { Image } from "astro:assets";
 type Project = CollectionEntry<"project">;
 let projects: Project[] = await getCollection("project");
-projects = [...projects, ...projects];
 ---
 
 <section class="mb-12 full-width">
@@ -14,7 +13,7 @@ projects = [...projects, ...projects];
                 projects &&
                     projects.map((project) => {
                         return (
-                            <li class="flex-shrink-0 hover:scale-105 transition-transform duration-200 origin-top-left border-2 border-primary-100 rounded-lg bg-primary-50 p-4 w-[calc(220px+8vw)] flex items-center justify-center">
+                            <li class="flex-shrink-0 hover:scale-105 transition-transform duration-200 origin-top-left border-2 border-secondary-100 rounded-lg bg-secondary-50 p-4 w-[calc(220px+8vw)]">
                                 <Image
                                     src={project.data.image ?? ""}
                                     width={800}
@@ -22,6 +21,12 @@ projects = [...projects, ...projects];
                                     alt=""
                                     class="aspect-video object-contain"
                                 />
+                                <a
+                                    class="border"
+                                    href={`/projects/${project.slug}`}
+                                >
+                                    {project.data.title}
+                                </a>
                             </li>
                         );
                     })

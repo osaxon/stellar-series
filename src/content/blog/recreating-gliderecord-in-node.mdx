@@ -1,0 +1,127 @@
+---
+title: "Recreating GlideRecord in Node"
+exerpt: "Trying to re-create the GlideRecord API from the Now platform using Node.JS and TypeScript."
+published: "2023-11-13"
+tags: ["side-project"]
+relatedPosts: []
+---
+
+import { Prism } from '@astrojs/prism';
+import BlogPostImage from "../../components/BlogPostImage.tsx"
+
+## Background
+
+It was around ten years ago when I first dipped my toes into coding, with a book called [Learn Python the Hard Way](https://learncodethehardway.org/). However, my true hands-on experience came a few years later at work, where the company opted to implement a new IT Service Management (ITSM) tool and I was asked to be part of the project team. 
+<br />
+The chosen solution was ServiceNow, an industry-leading platform renowned for its comprehensive array of features designed to automate IT workflows. This tool not only offers a wide range of features for IT workflow automation but also utilises JavaScript as the programming language for extending out-the-box capabilities.
+<br/>
+One of the most used internal APIs available on the platform is the [GlideRecord](https://developer.servicenow.com/dev.do#!/reference/api/vancouver/server_legacy/c_GlideRecordAPI), which provides methods for querying tables and mutating the resulting records returned by the query.
+<br/>
+This post is part 1 of an experiment to recreate the basic implementation of this API. I'm not trying to improve it or create a better version - this is simply a learning exercise and something to get my teeth stuck into. Feel free to drop me a message with any questions or comments.
+<br/>
+
+## Chosen stack
+
+I'm using Node.JS, TypeScript and Postgresql for this little side project.<br/>
+I'm not sure on the runtime used on by ServiceNow but I'm pretty confident it's some previous version of Node. I know there's been some updates since my time developming on the platform, but during my time, it only supported ECMAScript5 JavaScript standards. 
+<br/>
+None of this really matters as I'm only trying to create an API that behaves the same, I'm not trying to create a like-for-like implementation.
+<br/>
+I've chosen TypeScript mainly because I'm trying to teach myself to use it, but also because it provides a similar developer experience (DX) to that in ServiceNow, where the built-in code editor gives options based on input which speeds up dev time and reduces the chance of typos or errors. The same effect can be achieved with TypeScript and VScode's intellisense. 
+<br/>
+Here's a quick example of how the GlideRecord API works in ServiceNow:
+<br/>
+<Prism lang="js" code={`
+// target the 'incident' table
+var gr = new GlideRecord('incident);
+gr.addQuery('active', true)
+gr.query()
+
+// loop through each of the resulting rows
+while(gr.next()) {
+
+    // do something with each record
+    gr.column_name = 'new_value';
+
+    // save the update
+    gr.update()
+}
+`} />
+
+## First attempt
+
+Since the API employs the 'new' keyword for instantiation and subsequently offers various methods for queries, opting for a Class is a good option.
+
+Here's my first attempt at my new 'SlideRecord' class:
+
+<Prism lang="js" code={`
+type Tables = "projects" | "tasks";
+type Operators = "=" | "!=" | "<" | ">" | "<=" | ">=";
+type ColumnTypes = {
+    projects: "project_id" | "project_name" | "start_date";
+    tasks:
+        | "task_id"
+        | "task_name"
+        | "start_date"
+        | "end_date"
+        | "status"
+        | "priority"
+        | "project_id";
+};
+
+export class SlideRecord<T extends Tables> {
+    table;
+    queryString;
+    queryResult: Array<any>;
+    constructor(table: T) {
+        this.table = table;
+        this.queryString = \`SELECT * FROM \${this.table} \`;
+        this.queryResult = [];
+    }
+
+    addQuery<K extends ColumnTypes[T]>(
+    column: K,
+    operator: Operators,
+    value: string | number
+) {
+    if (this.queryString.includes("WHERE")) {
+        this.queryString += \`AND \${column} \${operator} \${value}\`;
+    } else {
+        this.queryString += \`WHERE \${column} \${operator} \${value}\`;
+    }
+}
+
+    async query() {
+        try {
+            this.queryResult = await db.query(this.queryString);
+            return this.queryResult;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+`}/>
+
+And to create an instance of SlideRecord and query the database:
+
+<Prism lang="js" code={`
+const sr = new SlideRecord("projects");
+sr.addQuery("project_id", "=", 1);
+const { rows, rowCount } = await sr.query();
+const project = rows[0];
+`}/>
+
+And voila! initial tests passing! 🥳
+
+<BlogPostImage alt="image of jest test results" srcset={{default: "https://res.cloudinary.com/djaiep6vj/image/upload/v1700602875/Screenshot_2023-11-21_at_21.39.26_i9rezq.png", narrow: "https://res.cloudinary.com/djaiep6vj/image/upload/v1700602875/Screenshot_2023-11-21_at_21.39.26_i9rezq.png"}} />
+
+## What's next
+
+Some thoughts on what I'll look at next:
+
+- add support for more complex queries and encoded queries
+- implement a 'next()' method which allows me to make updates to the individual resulting records
+- improve the Types in the Class and add Type checking for the individual columns
+
+
+Thanks for reading. Will post an update in the next few days 👻

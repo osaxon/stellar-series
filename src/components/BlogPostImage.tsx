@@ -9,7 +9,7 @@ export default function BlogPostImage({
         <picture>
             <source srcSet={srcset.default} media="(min-width: 600px)" />
             <img
-                className="h-auto w-auto mx-auto my-sm"
+                className="h-auto w-auto mx-auto my-sm rounded"
                 src={srcset.narrow}
                 alt={alt}
             />

@@ -28,5 +28,19 @@ console.log(headings);
 >
     <h1>{project.data.title}</h1>
     <h4>{project.data.description}</h4>
-    <!-- <Content /> -->
+    <div class="my-md">
+        {
+            headings.map((heading) => {
+                return (
+                    <li data-heading-level={heading.depth}>
+                        <a href={`/projects/${project.slug}/#${heading.slug}`}>
+                            {heading.text}
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </div>
+
+    <Content />
 </MarkdownLayout>

@@ -9,41 +9,33 @@ relatedProjects: []
 import { Prism } from '@astrojs/prism';
 import BlogPostImage from "../../components/BlogPostImage"
 
-### Table of Contents
-- [Summary](#summary)
-- [Planning](#planning)
-- [Authentication](#authentication)
-  - [JWT Callback](#jwt-callback)
-  - [Session Callback](#session-callback)
-- [Handling First-Time Login](#handling-first-time-login)
 
+### Project Summary
 
-### Summary
+This ongoing side project touches on the capabilities of the new App router and Server Actions in Next.js. Exciting stuff!
 
-This is an inprogress side project where I'm exploring the functionalities of the new App router and Server Actions in Next.js.  
-<br/>
 
 #### Planning 
 
-The last project I did before this one 
+Building on insights gained from the preceding project, I've decided to take a much more thoughtful approach to the planning of this project. It's easy to just dive in and start writing code, but I've come to realise that this isn't always conducive to good development experience! In a similar vein to the old carpentry proverb - "measure twice cut once" - spending more effort upfront planning tends to result in fewer refactors.
 
-### Authentication  
+#### Design 
 
-One of my main goals for the project was to implement an authentication flow that allows me (or another an admin) to invite users by email to sign up to my app. This is a pretty common technique used with small SaaS products and start-ups, and if I'm ever going to think of that million dollar idea, gotta be ready to roll with these features!
+### Development
+
+#### Authentication  
+
+One of my main goals for the project was to implement an authentication flow that allows me (or another an admin) to invite users by email to sign up to my app. This is a pretty common technique used with small SaaS products and start-ups, and if I'm ever going to think of that million dollar idea, I need to be ready to roll with these concepts!
 <br/>
-Here's a high level diagram of how I've achieved this.
+Here's a high level diagram of illustrating process for this feature.
 
 <BlogPostImage alt="diagram of authentication flow flow" srcset={{default: "https://res.cloudinary.com/djaiep6vj/image/upload/v1700060413/habit-auth-flow_ff7kkb.png", narrow:"https://res.cloudinary.com/djaiep6vj/image/upload/v1700066334/habit-auth-flow-narrow_pyxcmm.png" }} />
 
-#### JWT Callback
+#### Callbacks
 
 The JWT callback is responsible for updating the token based on user information fetched during the authentication flow with NextAuth. I've configured NextAuth to use the Prisma database adapater, which means the JWT callback gets the information about the user from the User table in my database.
 
-In the context of this setup, it plays a crucial role in customizing the token with specific user details such as the user's ID, role, and name. Additionally, it handles token updates triggered from the client side, ensuring that the token always reflects the latest user information retrieved from the MySQL database through Prisma's findUnique method. This mechanism contributes to a secure and up-to-date authentication process within the Next.js application, aligning with the project's goal of experimenting with the new App router and Server Actions in Next.js.
-
-When a user is authenticated (user is present), the callback adds specific user information (e.g., id, role, name) to the token.
-
-If the trigger is set to "update" (initiated from the client with the useSession hook), it fetches the latest user details from the database using Prisma's findUnique method and then updates the token with the fetched user information.
+In the context of this setup, it plays a crucial role in customising the token with specific user details such as the user's ID, role, and name.
 
 <Prism lang="js" code={`async jwt({ token, user, trigger }) {
             if (user) {
@@ -69,11 +61,9 @@ If the trigger is set to "update" (initiated from the client with the useSession
             return token;
         },`}/>
 
-#### Session callback
 
 The Session callback is responsible for updating the user session based on the token information. It is executed after the JWT callback completes.
 If both the token and the session's user information are available, it synchronizes key user details (id, role, name) between the token and the session.
-Additionally, it sets the user's image in the session, considering either the token's image or picture property.
 
 <Prism lang="js" code={`async session({ session, token }) {
             if (token && session.user) {
@@ -90,9 +80,7 @@ Additionally, it sets the user's image in the session, considering either the to
 
 The signIn callback checks if the user does not have a role assigned, implying it's their first time logging in. We can be sure of this as the database schema assigns a default role when a User is created, which only occurs after a succesful sign in.  
 
-If there's no role and an email is associated with the user, it queries the database using Prisma to find an unused invitation linked to that email.  
-
-If no valid invitation is found, it sets isAllowedToSignIn to false, indicating the user is not allowed to sign in. This ensures only users who have been invited to the app by an admin are able to sign in.
+If there's no role for the user, it queries the database using Prisma to find an unused invitation linked to the email requesting to sign-in. If no valid invitation is found, the callback returns a falsey value and the user won't be able to sign in. This ensures only users who have been invited to the app by an admin are able to sign in.
 
 <Prism lang="js" code={` async signIn({ user }) {
             let isAllowedToSignIn = true;

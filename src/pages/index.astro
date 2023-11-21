@@ -1,38 +1,49 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import ProjectsScroller from "../components/ProjectsScroller.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { ShapeOne } from "../components/svgs/ShapeOne";
 type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
+import heroImgLandscape from "../../public/hero-img-landscape.png";
+import heroImgPortrait from "../../public/hero-img-landscape.png";
 ---
 
 <PageLayout
-    title="Welcome to Astro."
     description={`Oli Saxon | Explorer in the world of software development, dipping my toes in
         web-design & UX.`}
 >
-    <h1 class="text-title font-heading font-bold">Oli Saxon</h1>
-    <p class="font-heading text-sub-title mb-md">
-        Explorer in the world of software development, dipping my toes in
-        web-design & UX.
-    </p>
-    <ProjectsScroller />
+    <section
+        class="bg-gradient-to-b relative from-background h-[calc(100svh-56px)] to-secondary-100 full-width"
+    >
+        <h1 class="text-title z-50 font-heading font-bold flex items-end">
+            Oli Saxon
+        </h1>
+        <p class="font-heading z-50 text-sub-title mb-md">
+            If software development is a game, I'm currently grinding for that
+            next level and wondering how everyone else around me seems to be
+            maxed out.
+        </p>
+        <ShapeOne />
+    </section>
 
-    <section class="mb-lg full-width bg-secondary-100 text-text-800 py-6">
-        <p class="text-sub-title font-heading mb-sm">A bit about me</p>
+    <section
+        class="mb-lg full-width min-h-[70svh] bg-secondary-100 text-text-800 py-6"
+    >
         <p class="text-small mb-xs">
-            I'm an enthusiastic full-stack software developer, trying to bridge
-            the gap between web design and development. I take pride in creating
-            user-friendly experiences that employ thoughtful design choices. As
-            a relatively new member in the field, I embrace every opportunity to
-            collaborate and expand my understanding of current web best
-            practices, always eager to learn and contribute to innovative
-            solutions.
+            I'm a full-stack software developer trying to join the dots between
+            design and development.
         </p>
         <p class="text-small mb-xs">
-            When I'm not coding, I enjoy rock climbing and bouldering, yoga, and
-            music production - usually not all at the same time 😄
+            As a new member in the field, I appreciate the chance to collaborate
+            and enhance my understanding of current web best practices. I'm
+            always ready to learn and contribute to practical solutions.
+        </p>
+        <p class="text-small mb-xs">
+            When I'm not coding, I enjoy bouldering, yoga, and music production
+            - usually not all at the same time 😄
         </p>
         <p class="text-small">
             Feel free to <span
