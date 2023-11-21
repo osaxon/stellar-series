@@ -18,7 +18,6 @@ interface Props {
 
 const { project } = Astro.props;
 const { Content, headings } = await project.render();
-console.log(headings);
 ---
 
 <MarkdownLayout

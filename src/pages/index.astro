@@ -1,14 +1,9 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import { Image } from "astro:assets";
-import { Picture } from "astro:assets";
-import ProjectsScroller from "../components/ProjectsScroller.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { ShapeOne } from "../components/svgs/ShapeOne";
 type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
-import heroImgLandscape from "../../public/hero-img-landscape.png";
-import heroImgPortrait from "../../public/hero-img-landscape.png";
 ---
 
 <PageLayout
@@ -63,7 +58,7 @@ import heroImgPortrait from "../../public/hero-img-landscape.png";
         </p>
         <ul class="space-y-md">
             {
-                posts.map(({ slug, data: { image, title, exerpt, tags } }) => (
+                posts.map(({ slug, data: { title, exerpt, tags } }) => (
                     <li class="list-none rounded relative group flex gap-4 justify-between ">
                         <div class="space-y-2">
                             <a

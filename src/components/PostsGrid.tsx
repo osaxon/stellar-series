@@ -6,7 +6,6 @@ type Post = {
     exerpt: string;
     published: string;
     tags: Array<string>;
-    image: string;
     relatedPosts: Array<string>;
 };
 
