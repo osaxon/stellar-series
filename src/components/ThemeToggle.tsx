@@ -32,6 +32,8 @@ export default function ThemeToggle() {
             id="themeToggleBtn"
             data-theme-toggle
             className="w-10 h-10"
+            title="toggle theme"
+            aria-description="toggle theme button"
         >
             <Square />
         </button>

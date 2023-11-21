@@ -15,7 +15,7 @@ const { pathname } = Astro.url;
             pathname !== "/" && (
                 <nav class="flex items-end gap-2">
                     <a href="/blog" aria-label="Blog">
-                        Posts
+                        Blog
                     </a>
                     <a class="group" href="/" aria-label="Home">
                         <IconOne />
@@ -31,7 +31,12 @@ const { pathname } = Astro.url;
         <!-- Social Links -->
         <div class="flex gap-4">
             <!-- GitHub SVG Icon -->
-            <a class="group justify-self-end" href="https://github.com/osaxon">
+            <a
+                aria-description="link to github profile"
+                aria-label="github"
+                class="group justify-self-end"
+                href="https://github.com/osaxon"
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -46,7 +51,12 @@ const { pathname } = Astro.url;
             </a>
 
             <!-- LinkedIn Icon -->
-            <a class="group justify-self-end" href="https://linkedin.com/">
+            <a
+                aria-description="link to linkedin profile"
+                aria-label="linkedin"
+                class="group justify-self-end"
+                href="https://linkedin.com/"
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
