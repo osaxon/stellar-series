@@ -46,7 +46,7 @@ export default function PostsGrid({ posts }: { posts: Post[] }) {
                                 selectedTags.value.includes(tag)
                             )
                     )
-                    .map(({ image: img, title, exerpt, tags, slug }) => (
+                    .map(({ title, exerpt, tags, slug }) => (
                         <div className="list-none relative group">
                             <div>
                                 <a
