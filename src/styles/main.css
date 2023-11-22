@@ -282,7 +282,7 @@ a {
 }
 
 .blog-post>p {
-    font-size: var(--font-0);
+    font-size: var(--font-1);
 }
 
 .blog-post>pre {

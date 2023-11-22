@@ -26,7 +26,7 @@ import PostMeta from "../../components/PostMeta";
     description={post.data.exerpt ?? "Blog post by Oli Saxon"}
 >
     <h1>{post.data.title}</h1>
-    <h4>{post.data.exerpt}</h4>
+    <p class="mb-lg font-heading">{post.data.exerpt}</p>
     <PostMeta published={post.data.published} readTime="5" />
     <Content />
 </MarkdownLayout>
