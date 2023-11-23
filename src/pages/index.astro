@@ -11,7 +11,7 @@ const posts: Post[] = await getCollection("blog");
         web-design & UX.`}
 >
     <section
-        class="bg-gradient-to-b relative from-background to-secondary-100 full-width content-grid"
+        class="relative full-width content-grid text-text border-b border-text"
     >
         <h1 class="text-title z-50 font-heading font-bold flex items-end">
             Oli Saxon
@@ -21,16 +21,10 @@ const posts: Post[] = await getCollection("blog");
             next level and wondering how everyone else around me seems to be
             maxed out.
         </p>
-        <div class="hero-banner content-grid full-width h-[30vh]">
-            <div
-                class="relative h-full bg-secondary-500 mix-blend-screen full-width overflow-hidden"
-            >
-            </div>
-        </div>
     </section>
 
     <section
-        class="full-width min-h-[70svh] bg-secondary-100 text-text-800 py-6"
+        class="full-width text-text py-6 bg-opacity-20 bg-white border-b border-text"
     >
         <p class="text-sub-title font-heading mb-sm">A bit about me</p>
 
@@ -50,14 +44,14 @@ const posts: Post[] = await getCollection("blog");
         <p class="text-small">
             Feel free to <span
                 ><a
-                    class="underline text-accent-700"
+                    class="underline text-accent"
                     href="mailto:oliverrsaxon@gmail.com">get in touch</a
                 ></span
             > if you want to know more.
         </p>
     </section>
 
-    <section class="mb-lg py-8">
+    <section class="py-8 full-width">
         <p class="text-sub-title font-heading mb-sm">Latest Posts</p>
         <p class="text-small mb-lg">
             My thoughts and insights on my jouryney into web development,
@@ -70,15 +64,15 @@ const posts: Post[] = await getCollection("blog");
                         <div class="space-y-2">
                             <a
                                 href={`/blog/${slug}`}
-                                class="text-paragraph font-bold underline"
+                                class="text-paragraph font-bold"
                             >
-                                <h3 class="text-secondary-900">{title}</h3>
+                                <h3>{title}</h3>
                             </a>
                             <p class="text-small max-w-md">{exerpt}</p>
                             {tags && (
                                 <ul class="flex gap-1">
                                     {tags.map((tag) => (
-                                        <li class="text-xs p-1 rounded bg-background-500 border-secondary-400 text-text-900">
+                                        <li class="text-sm p-1 rounded bg-accent text-background border-secondary">
                                             {tag}
                                         </li>
                                     ))}

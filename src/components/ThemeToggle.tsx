@@ -5,7 +5,7 @@ import { Square } from "./svgs/Square";
 const theme = signal("light");
 
 export default function ThemeToggle() {
-    const themes = ["light", "dark", "mint-choc"];
+    const themes = ["light", "dark"];
 
     useEffect(() => {
         theme.value = window.localStorage.getItem("theme") || "light";
