@@ -2,6 +2,7 @@
 import PageLayout from "../layouts/PageLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { CoilVector } from "../components/svgs/CoilVector";
 type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
 ---
@@ -9,24 +10,23 @@ const posts: Post[] = await getCollection("blog");
 <PageLayout
     description={`Oli Saxon | Explorer in the world of software development, dipping my toes in
         web-design & UX.`}
+    title="Home page"
 >
-    <section
-        class="relative full-width content-grid text-text border-b border-text"
-    >
+    <section class="relative full-width content-grid text-text min-h-[30dvh]">
         <h1 class="text-title z-50 font-heading font-bold flex items-end">
             Oli Saxon
         </h1>
-        <p class="font-heading text-sub-title mb-md">
-            If software development is a game, I'm currently grinding for that
-            next level and wondering how everyone else around me seems to be
-            maxed out.
-        </p>
+        <h2 class="font-heading text-sub-title mb-md">
+            A curious mind exploring software development and technology.
+        </h2>
     </section>
 
-    <section
-        class="full-width text-text py-6 bg-opacity-20 bg-white border-b border-text"
-    >
-        <p class="text-sub-title font-heading mb-sm">A bit about me</p>
+    <div class="relative full-width h-full min-h-[45vh]">
+        <CoilVector />
+    </div>
+
+    <section class="full-width text-text py-6">
+        <h2 class="text-sub-title font-heading mb-sm">A bit about me</h2>
 
         <p class="text-small mb-xs">
             I'm a full-stack software developer working with JavaScript &
@@ -52,7 +52,7 @@ const posts: Post[] = await getCollection("blog");
     </section>
 
     <section class="py-8 full-width">
-        <p class="text-sub-title font-heading mb-sm">Latest Posts</p>
+        <h2 class="text-sub-title font-heading mb-sm">Latest Posts</h2>
         <p class="text-small mb-lg">
             My thoughts and insights on my jouryney into web development,
             sprinkled with occasional 'non-techy' reflections."

@@ -47,19 +47,19 @@
     }
 
     .light {
-        --text: #4a195e;
-        --background: #cfe8e7;
-        --primary: #d4bcb5;
+        --text: #3e4478;
+        --background: #f9f8f9;
+        --primary: #678c69;
         --secondary: #cdceef;
-        --accent: #716a6e;
+        --accent: #0b5d72;
     }
 
     .dark {
-        --text: #e7f8c9;
-        --background: #347279;
-        --primary: #594285;
-        --secondary: #1f1929;
-        --accent: #8fd684;
+        --text: #adf0be;
+        --background: #5b4162;
+        --primary: #7edc8f;
+        --secondary: #8aaece;
+        --accent: #e7cb7c;
     }
 
 }
