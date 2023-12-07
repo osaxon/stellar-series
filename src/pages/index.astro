@@ -2,7 +2,6 @@
 import PageLayout from "../layouts/PageLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
-import { CoilVector } from "../components/svgs/CoilVector";
 import { PlaneVector } from "../components/svgs/PlaneVector";
 type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
