@@ -3,6 +3,7 @@ import PageLayout from "../layouts/PageLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { CoilVector } from "../components/svgs/CoilVector";
+import { PlaneVector } from "../components/svgs/PlaneVector";
 type Post = CollectionEntry<"blog">;
 const posts: Post[] = await getCollection("blog");
 ---
@@ -12,18 +13,15 @@ const posts: Post[] = await getCollection("blog");
         web-design & UX.`}
     title="Home page"
 >
-    <section class="relative full-width content-grid text-text min-h-[30dvh]">
+    <section class="relative full-width text-text">
         <h1 class="text-title z-50 font-heading font-bold flex items-end">
             Oli Saxon
         </h1>
-        <h2 class="font-heading text-sub-title mb-md">
+        <h2 class="font-heading z-50 text-sub-title">
             A curious mind exploring software development and technology.
         </h2>
+        <PlaneVector />
     </section>
-
-    <div class="relative full-width h-full min-h-[45vh]">
-        <CoilVector />
-    </div>
 
     <section class="full-width text-text py-6">
         <h2 class="text-sub-title font-heading mb-sm">A bit about me</h2>
