@@ -13,19 +13,16 @@ let projects: Project[] = await getCollection("project");
                 projects &&
                     projects.map((project) => {
                         return (
-                            <li class="flex-shrink-0 hover:scale-105 transition-transform duration-200 origin-top-left border-2 border-secondary-100 rounded-lg bg-secondary-50 p-4 w-[calc(220px+8vw)]">
-                                <Image
-                                    src={project.data.image ?? ""}
-                                    width={800}
-                                    height={450}
-                                    alt=""
-                                    class="aspect-video object-contain"
-                                />
-                                <a
-                                    class="border"
-                                    href={`/projects/${project.slug}`}
-                                >
-                                    {project.data.title}
+                            <li class="flex-shrink-0 transition-transform duration-200 origin-top-left border-2 border-secondary-100 rounded-lg bg-secondary-50 p-4 w-[calc(220px+8vw)]">
+                                <a href={`/projects/${project.slug}`}>
+                                    <Image
+                                        src={project.data.image ?? ""}
+                                        width={800}
+                                        height={450}
+                                        alt=""
+                                        class="aspect-video object-contain"
+                                    />
+                                    <span>{project.data.title}</span>
                                 </a>
                             </li>
                         );

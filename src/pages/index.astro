@@ -3,7 +3,10 @@ import PageLayout from "../layouts/PageLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { PlaneVector } from "../components/svgs/PlaneVector";
+import ProjectsScroller from "../components/ProjectsScroller.astro";
 type Post = CollectionEntry<"blog">;
+type Project = CollectionEntry<"project">;
+const projects: Project[] = await getCollection("project");
 const posts: Post[] = await getCollection("blog");
 ---
 
@@ -21,6 +24,38 @@ const posts: Post[] = await getCollection("blog");
         </h2>
         <PlaneVector />
     </section>
+
+    <ProjectsScroller />
+
+    <!-- <section class="full-width border">
+        <h2 class="text-sub-title font-heading mb-sm">Projects</h2>
+        <ul class="grid grid-cols-2">
+            {
+                projects.map((project) => (
+                    <li class="border">
+                        <a
+                            href={`/projects/${project.slug}`}
+                            class="font-heading"
+                        >
+                            {project.data.title}
+                        </a>
+                        <Image
+                            alt=""
+                            width={1200}
+                            height={800}
+                            class="w-64 object-cover"
+                            src={project.data.image}
+                        />
+                        <ul class="flex gap-2">
+                            {project.data.tags.map((tag: string) => (
+                                <p>{tag}</p>
+                            ))}
+                        </ul>
+                    </li>
+                ))
+            }
+        </ul>
+    </section> -->
 
     <section class="full-width text-text py-6">
         <h2 class="text-sub-title font-heading mb-sm">A bit about me</h2>
@@ -68,7 +103,7 @@ const posts: Post[] = await getCollection("blog");
                             <p class="text-small max-w-md">{exerpt}</p>
                             {tags && (
                                 <ul class="flex gap-1">
-                                    {tags.map((tag) => (
+                                    {tags.map((tag: string) => (
                                         <li class="text-sm p-1 rounded bg-accent text-background border-secondary">
                                             {tag}
                                         </li>

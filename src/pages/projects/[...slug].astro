@@ -27,7 +27,7 @@ const { Content, headings } = await project.render();
 >
     <h1>{project.data.title}</h1>
     <h4>{project.data.description}</h4>
-    <div class="my-md">
+    <!-- <div class="my-md">
         {
             headings.map((heading) => {
                 return (
@@ -39,7 +39,6 @@ const { Content, headings } = await project.render();
                 );
             })
         }
-    </div>
-
+    </div> -->
     <Content />
 </MarkdownLayout>
