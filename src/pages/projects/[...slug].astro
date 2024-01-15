@@ -23,22 +23,11 @@ const { Content, headings } = await project.render();
 <MarkdownLayout
     title={project.data.title}
     path="projects"
-    description={`A markdown page about project ${project.data.title} by Oli Saxon`}
+    description={`Project ${project.data.title} by Oli Saxon`}
 >
-    <h1>{project.data.title}</h1>
-    <h4>{project.data.description}</h4>
-    <!-- <div class="my-md">
-        {
-            headings.map((heading) => {
-                return (
-                    <li data-heading-level={heading.depth}>
-                        <a href={`/projects/${project.slug}/#${heading.slug}`}>
-                            {heading.text}
-                        </a>
-                    </li>
-                );
-            })
-        }
-    </div> -->
+    <header>
+        <h1>{project.data.title}</h1>
+        <p class="font-heading">{project.data.description}</p>
+    </header>
     <Content />
 </MarkdownLayout>

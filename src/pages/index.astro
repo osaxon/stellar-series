@@ -19,7 +19,10 @@ const posts: Post[] = await getCollection("blog");
         <h1 class="text-title z-50 font-heading font-bold flex items-end">
             Oli Saxon
         </h1>
-        <h2 class="font-heading z-50 text-sub-title">
+        <p class="z-50 text-small opacity-40">
+            Software Developer | Problem Solver | Design Enthusiast
+        </p>
+        <h2 class="font-heading mt-4 z-50 text-sub-title">
             A curious mind exploring software development and technology.
         </h2>
         <PlaneVector />
@@ -79,15 +82,15 @@ const posts: Post[] = await getCollection("blog");
                     class="underline text-accent"
                     href="mailto:oliverrsaxon@gmail.com">get in touch</a
                 ></span
-            > if you want to know more.
+            >.
         </p>
     </section>
 
     <section class="py-8 full-width">
-        <h2 class="text-sub-title font-heading mb-sm">Latest Posts</h2>
-        <p class="text-small mb-lg">
+        <h2 class="text-sub-title font-heading mb-sm">Penny for my thoughts</h2>
+        <p class="text-paragraph mb-lg">
             My thoughts and insights on my jouryney into web development,
-            sprinkled with occasional 'non-techy' reflections."
+            sprinkled with occasional non-tech related reflections.
         </p>
         <ul class="space-y-md">
             {
@@ -104,7 +107,7 @@ const posts: Post[] = await getCollection("blog");
                             {tags && (
                                 <ul class="flex gap-1">
                                     {tags.map((tag: string) => (
-                                        <li class="text-sm p-1 rounded bg-accent text-background border-secondary">
+                                        <li class="text-sm px-2 py-1 rounded bg-accent text-background border-secondary">
                                             {tag}
                                         </li>
                                     ))}

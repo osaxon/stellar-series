@@ -5,24 +5,23 @@ type Project = CollectionEntry<"project">;
 let projects: Project[] = await getCollection("project");
 ---
 
-<section class="mb-12 full-width">
-    <p class="text-sub-title font-heading mb-sm">Recent Projects</p>
+<section class="full-width">
+    <p class="text-sub-title font-heading mb-sm">Some of my work</p>
     <article class="relative projects-container full-width scroll-x">
         <ul role="list" class="projects py-4">
             {
                 projects &&
                     projects.map((project) => {
                         return (
-                            <li class="flex-shrink-0 transition-transform duration-200 origin-top-left border-2 border-secondary-100 rounded-lg bg-secondary-50 p-4 w-[calc(220px+8vw)]">
+                            <li class="flex-shrink-0 transition-transform duration-200 origin-top-left border-secondary-100 rounded-lg bg-secondary-50 w-96">
                                 <a href={`/projects/${project.slug}`}>
                                     <Image
                                         src={project.data.image ?? ""}
                                         width={800}
                                         height={450}
                                         alt=""
-                                        class="aspect-video object-contain"
+                                        class="aspect-video object-fill rounded border-2 border-secondary"
                                     />
-                                    <span>{project.data.title}</span>
                                 </a>
                             </li>
                         );

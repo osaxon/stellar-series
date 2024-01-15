@@ -46,6 +46,29 @@ export default {
                         "--tw-prose-headings": "var(--secondary)",
                         "--tw-prose-links": "var(--accent)",
                         color: "var(--text)",
+                        p: {
+                            fontSize: "var(--text-paragraph)",
+                        },
+                    },
+                },
+                lg: {
+                    css: {
+                        "--tw-prose-headings": "var(--secondary)",
+                        "--tw-prose-links": "var(--accent)",
+                        color: "var(--text)",
+                        p: {
+                            fontSize: "var(--text-paragraph)",
+                        },
+                    },
+                },
+                md: {
+                    css: {
+                        "--tw-prose-headings": "var(--secondary)",
+                        "--tw-prose-links": "var(--accent)",
+                        color: "var(--text)",
+                        p: {
+                            fontSize: "var(--text-paragraph)",
+                        },
                     },
                 },
             }),

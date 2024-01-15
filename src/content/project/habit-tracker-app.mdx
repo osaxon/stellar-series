@@ -8,83 +8,18 @@ relatedProjects: []
 ---
 import { Prism } from '@astrojs/prism';
 import BlogPostImage from "../../components/BlogPostImage"
-
-
-### Project Summary
-
-This ongoing side project touches on the capabilities of the new App router and Server Actions in Next.js. Exciting stuff!
-
-
-#### Planning 
-
-Building on insights gained from the preceding project, I've decided to take a much more thoughtful approach to the planning of this project. It's easy to just dive in and start writing code, but I've come to realise that this isn't always conducive to good development experience! In a similar vein to the old carpentry proverb - "measure twice cut once" - spending more effort upfront planning tends to result in fewer refactors.
-
-#### Design 
-
-### Development
-
-#### Authentication  
-
-One of my main goals for the project was to implement an authentication flow that allows me (or another an admin) to invite users by email to sign up to my app. This is a pretty common technique used with small SaaS products and start-ups, and if I'm ever going to think of that million dollar idea, I need to be ready to roll with these concepts!
-<br/>
-Here's a high level diagram of illustrating process for this feature.
-
-<BlogPostImage alt="diagram of authentication flow flow" srcset={{default: "https://res.cloudinary.com/djaiep6vj/image/upload/v1700060413/habit-auth-flow_ff7kkb.png", narrow:"https://res.cloudinary.com/djaiep6vj/image/upload/v1700066334/habit-auth-flow-narrow_pyxcmm.png" }} />
-
-#### Callbacks
-
-The JWT callback is responsible for updating the token based on user information fetched during the authentication flow with NextAuth. I've configured NextAuth to use the Prisma database adapater, which means the JWT callback gets the information about the user from the User table in my database.
-
-In the context of this setup, it plays a crucial role in customising the token with specific user details such as the user's ID, role, and name.
-
-<Prism lang="js" code={`async jwt({ token, user, trigger }) {
+export const jwtCallbackCode = `async jwt({ token, user, trigger }) {
+            // user is the record in the database for the user logging in
             if (user) {
                 token.id = user.id;
                 token.role = user.role;
                 token.name = user.name;
             }
-
-            // triggered from client with useSession hook
-            if (trigger === "update") {
-                // the user obj is only available during sign in so we look up the user to get the updates from the db
-                const user = await prisma.user.findUnique({
-                    where: { id: token.id },
-                });
-
-                // update the token
-                if (user) {
-                    token.image = user?.image;
-                    // other properties updates...
-                }
-            }
-
             return token;
-        },`}/>
+        },`
 
-
-The Session callback is responsible for updating the user session based on the token information. It is executed after the JWT callback completes.
-If both the token and the session's user information are available, it synchronizes key user details (id, role, name) between the token and the session.
-
-<Prism lang="js" code={`async session({ session, token }) {
-            if (token && session.user) {
-                session.user.id = token.id;
-                session.user.role = token.role;
-                session.user.name = token.name;
-                session.user.image = token.image ?? token.picture;
-            }
-
-            return session;
-        },`}/>
-
-#### Handling First-Time Login
-
-The signIn callback checks if the user does not have a role assigned, implying it's their first time logging in. We can be sure of this as the database schema assigns a default role when a User is created, which only occurs after a succesful sign in.  
-
-If there's no role for the user, it queries the database using Prisma to find an unused invitation linked to the email requesting to sign-in. If no valid invitation is found, the callback returns a falsey value and the user won't be able to sign in. This ensures only users who have been invited to the app by an admin are able to sign in.
-
-<Prism lang="js" code={` async signIn({ user }) {
+export const signInCallbackCode = `async signIn({ user }) {
             let isAllowedToSignIn = true;
-
             // if the user doesn't have a role yet we can be sure this is the first time logging in
             // a default 'user' role us assigned to all new users in the database when created by the prisma adapter
             // in this case, we want to check if there's a valid invitation associated with the email signing in
@@ -92,13 +27,99 @@ If there's no role for the user, it queries the database using Prisma to find an
                 const invitation = await prisma.invitations.findFirst({
                     where: { email: user.email, used: false },
                 });
-
                 // throw error if no invitation
                 if (!invitation) {
                     isAllowedToSignIn = false;
                 }
             }
-
             return isAllowedToSignIn;
-        },`} />
+        },`
 
+export const authMwCode = `
+export async function middleware(request: NextRequest, _next: NextFetchEvent) {
+    const { pathname } = request.nextUrl;
+    const adminPaths = ["/admin"];
+
+    // all paths should be protected
+    const protectedPaths = [...adminPaths, "/dashboard"];
+
+    // check if current path is in the admin paths array
+    const matchesAdminPaths = adminPaths.some((path) =>
+        pathname.startsWith(path)
+    );
+    // check if current path is protected
+    const matchesProtectedPaths = protectedPaths.some((path) =>
+        pathname.startsWith(path)
+    );
+
+    if (matchesProtectedPaths) {
+        // get the JWT
+        const token = await getToken({ req: request });
+
+        // redirect to sign in if user is not logged in
+        if (!token) {
+            const url = new URL('/api/auth/signin', request.url);
+            url.searchParams.set("callbackUrl", encodeURI(request.url));
+            return NextResponse.redirect(url);
+        }
+
+        // redirect to error page if attempting to view admin route as non-admin user
+        if (matchesAdminPaths && token.role !== UserRole.ADMIN) {
+            const url = new URL('/403', request.url);
+            return NextResponse.redirect(url);
+        }
+    }
+
+    return NextResponse.next();
+}
+`
+
+
+## Project Summary
+
+This ongoing side project utilises the capabilities of the new App router and Server Actions in Next.js. Exciting stuff! 
+
+<BlogPostImage alt="diagram of authentication flow flow" srcset={{default: "https://res.cloudinary.com/djaiep6vj/image/upload/v1700060413/habit_demo_i0vzik.gif", narrow:"https://res.cloudinary.com/djaiep6vj/image/upload/v1700066334/habit_demo_i0vzik.gif" }} /> 
+
+
+
+## Development
+
+### Authentication  
+
+One of my main goals for the project was to implement a feature where users are invited to sign into the app. This is a common technique that allows a developer or administrator to restrict access, for example for a closed beta stage of the application deployment.
+
+Here's a high level diagram illustrating the user flow and process.
+
+<BlogPostImage alt="diagram of authentication flow flow" srcset={{default: "https://res.cloudinary.com/djaiep6vj/image/upload/v1700060413/habit_flow_landscape_zdwhgi.png", narrow:"https://res.cloudinary.com/djaiep6vj/image/upload/v1700066334/habit_flow_portrait_ndpgpc.png" }} />
+
+#### Managing Invites
+
+The invite list is just a table where I'm storing a users email address and some flags to indicate whether the invite has been used. I created an admin panel visible to users with the 'admin' role in the database where invitations can be created for new users. More on this below.
+
+<BlogPostImage alt="diagram of authentication flow flow" srcset={{default: "https://res.cloudinary.com/djaiep6vj/image/upload/v1700060413/habit_admin_panel_bppxti.gif", narrow:"https://res.cloudinary.com/djaiep6vj/image/upload/v1700066334/habit_admin_panel_bppxti.gif" }} /> 
+
+
+#### First-Time Login
+
+The signIn callback verifies whether the user has an assigned role, indicating it's their initial login. We can be sure of this as the database schema assigns a default role when a User is created, which only occurs after a succesful sign in.  
+
+If there's no role for the user, the callback queries the database using Prisma to find an unused invitation linked to the email attempting to sign-in. If no valid invitation is found, the callback returns a falsey value and the user won't be able to sign in. This ensures only users who have been invited to the app by an admin are able to sign in.
+
+<Prism lang="js" code={signInCallbackCode} />
+
+The JWT callback is responsible for updating the Json Web Token with information fetched during the authentication flow with NextAuth. 
+
+In the context of this setup, it plays a key role in customising the token with specific user details such as the user information stored in the database. 
+
+<Prism lang="js" code={jwtCallbackCode}/>
+
+#### Auth Middleware
+
+To ensure only authenticated users can access the main dashboard page of my app, I needed a mechanism to verify a user's login status and redirect them to the sign-in page if they attempt to access the dashboard without authentication.
+
+Additionally, I've incorporated an admin panel in my app, accessible only to users with the 'admin' role. Therefore, it became necessary to check the user's role when navigating to protected routes.
+
+Fortunately, NextJS supports middleware which allows code execution before a request is completed. This solution is perfect for this scenario as it allows you to consolidate all authentication-related checks in a single file and define the routes to be protected by the checks.
+
+<Prism lang="js" code={authMwCode} />

@@ -1,12 +1,28 @@
 ---
 title: NC News project
-description: "A full-stack application built with React, Node, Express and Postres."
-tags: ["React", "Express", "Node"]
+description: "A full-stack application built with React, Node, Express and Postgres."
+tags: ["React", "Express", "Node", "Postgres", "Jest", "TDD", "Supertest"]
 image: "../images/nc-news.jpeg"
 relatedPosts: []
 relatedProjects: []
+url: "https://inspiring-croquembouche-65b118.netlify.app/"
 ---
 
-### Project Summary
+## Project Summary
 
-NC News is a front-end project built using React and Vite. The app provides a platform for users to view, filter, and interact with news and general interest articles different topics. The article data is served by a hosted Express API.
+NC News is the final solo project I completed with [Northcoders](https://northcoders.com). The project was completed in two parts for the back-end and the front-end.
+
+### Back-end Development
+
+The server implementation of the project is powered by Node.js and Express which provided a smooth learning curve for creating RESTful APIs.
+
+The design pattern of the back-end follows the MVC model. The basic principle is to provide a separation of concerns by having dedicated functions for handling interactions with the database (the model), and functions to handle the request input and serve the data back to the client (controller).
+
+### Front-end Development
+
+The front end uses React + Vite, 
+
+The view layer can be implemented with an HTML template engine and served directly from the Express server, however a common approach is to send the data as JSON and have a front-end framework such as React make a fetch request for the data.
+
+
+View the deployed site [here]({frontmatter.url}).

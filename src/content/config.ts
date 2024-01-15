@@ -1,5 +1,6 @@
 // 1. Import utilities from `astro:content`
 import { z, defineCollection, reference } from "astro:content";
+
 const project = defineCollection({
     type: "content",
     schema: ({ image }) =>
@@ -10,6 +11,7 @@ const project = defineCollection({
             image: image(),
             relatedPosts: z.array(reference("blog")),
             relatedProjects: z.array(reference("project")),
+            url: z.string().url().optional(),
         }),
 });
 

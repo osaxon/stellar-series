@@ -12,15 +12,9 @@ const { pathname } = Astro.url;
         <ThemeToggle client:load />
         {
             pathname !== "/" && (
-                <nav class="flex items-end gap-2 text-paragraph">
-                    <a href="/blog" aria-label="Blog">
-                        Blog
-                    </a>
-                    <a class="group" href="/" aria-label="Home">
+                <nav class="flex items-end gap-2 font-heading text-paragraph">
+                    <a class="hover:text-accent" href="/" aria-label="Home">
                         Home
-                    </a>
-                    <a href="/projects" aria-label="Projects">
-                        Projects
                     </a>
                 </nav>
             )
