@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
+import { Image } from "astro:assets";
 
 type Project = CollectionEntry<"project">;
 
@@ -29,5 +30,7 @@ const { Content, headings } = await project.render();
         <h1>{project.data.title}</h1>
         <p class="font-heading">{project.data.description}</p>
     </header>
+    <Image src={project.data.image} alt="" />
+    <a target="_blank" href={project.data.url}>Try it</a>
     <Content />
 </MarkdownLayout>

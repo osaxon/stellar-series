@@ -41,33 +41,25 @@ export default {
                         "--tw-prose-headings": "var(--secondary)",
                     },
                 },
-                xl: {
-                    css: {
-                        "--tw-prose-headings": "var(--secondary)",
-                        "--tw-prose-links": "var(--accent)",
-                        color: "var(--text)",
-                        p: {
-                            fontSize: "var(--text-paragraph)",
-                        },
-                    },
-                },
                 lg: {
                     css: {
                         "--tw-prose-headings": "var(--secondary)",
                         "--tw-prose-links": "var(--accent)",
                         color: "var(--text)",
                         p: {
-                            fontSize: "var(--text-paragraph)",
+                            fontSize: "var(--font-0)",
                         },
-                    },
-                },
-                md: {
-                    css: {
-                        "--tw-prose-headings": "var(--secondary)",
-                        "--tw-prose-links": "var(--accent)",
-                        color: "var(--text)",
-                        p: {
-                            fontSize: "var(--text-paragraph)",
+                        h4: {
+                            fontSize: "var(--font-1)",
+                        },
+                        h3: {
+                            fontSize: "var(--font-2)",
+                        },
+                        h2: {
+                            fontSize: "var(--font-3)",
+                        },
+                        h1: {
+                            fontSize: "var(--font-5)",
                         },
                     },
                 },
